@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "db:build-seed": "cat supabase/seeds/*.sql > supabase/seed.sql",
+    "db:start": "npm run db:build-seed && npx supabase start"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
@@ -14,10 +16,10 @@
     "@fortawesome/react-fontawesome": "^3.1.1",
     "@next/third-parties": "^16.1.0",
     "@supabase/supabase-js": "^2.86.2",
-    "@vercel/analytics": "^1.6.1",
+    "@vercel/analytics": "^2.0.1",
     "js-cookie": "^3.0.5",
     "lucide-react": "^0.556.0",
-    "next": "^16.1.0",
+    "next": "^16.2.6",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-icons": "^5.5.0"

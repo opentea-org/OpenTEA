@@ -49,8 +49,7 @@ export function Footer({ lang = "es" }: { lang?: "en" | "es" }) {
 
   return (
     <footer className="bg-white border-t border-brandGrayLight pt-16 pb-8">
-      <div className="container mx-auto px-6">
-
+      <div className="max-w-6xl mx-auto px-6">
         {/* --- Main Footer Grid --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 text-left">
 

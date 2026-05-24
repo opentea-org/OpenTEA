@@ -7,14 +7,14 @@ import { highlightEmphasis } from "@/src/utils/formatEmphasis";
 // Translations
 const text = {
   en: {
-    heroBadge: "Independent autism-friendly app guide",
+    heroBadge: "Autism-friendly app guide",
     title: "Your starting point for finding helpful __autism-focused__ *technology*",
     subtitle: "We collect and evaluate reliable apps so you can choose with confidence",
     ctaPrimary: "Browse apps",
     ctaSecondary: "How we review apps",
   },
   es: {
-    heroBadge: "Guía independiente de apps para autismo",
+    heroBadge: "Guía de apps para autismo",
     title: "Tu punto de partida para encontrar *tecnología útil* en __autismo__",
     subtitle: "Recopilamos y evaluamos apps confiables para que puedas elegir con tranquilidad",
     ctaPrimary: "Explorar apps",

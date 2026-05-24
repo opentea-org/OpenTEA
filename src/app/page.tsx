@@ -9,16 +9,16 @@ import {
   SocialSkillsCategoryRow,
 } from "@/components/HomeCategories";
 
-// Define the type locally or import it if shared
+import AppCategorization from "@/components/AppCategorization";
+import Collaborate from "@/components/Collaborate";
+
 type Lang = "en" | "es";
 
 export default async function HomePage() {
   const cookieStore = await cookies();
   const cookieVal = cookieStore.get("lang")?.value;
 
-  // Validate the cookie value. Fallback to 'es' if invalid or missing.
   const lang: Lang = (cookieVal === "en" || cookieVal === "es") ? cookieVal : "es";
-
   const apps = await getApps(lang);
 
   return (
@@ -27,11 +27,15 @@ export default async function HomePage() {
       <BrandSlogan lang={lang} />
       <Principles lang={lang} />
       
-      <section className="space-y-2">
+      <AppCategorization lang={lang} />
+      
+      <section>
         <AacCategoryRow apps={apps} lang={lang} />
         <RoutinesCategoryRow apps={apps} lang={lang} />
         <SocialSkillsCategoryRow apps={apps} lang={lang} />
       </section>
+
+      <Collaborate lang={lang} />
     </main>
   );
 }
