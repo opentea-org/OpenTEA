@@ -21,16 +21,16 @@ WITH new_app AS (
     'doctor-tea',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "Doctor TEA",
-        "short_description": "Web platform to familiarize people with autism with medical procedures using cartoons and videos.",
-        "long_description": "Doctor TEA is a web platform designed to facilitate medical visits for people with autism. It uses vignettes, videos and animations to explain common medical tests and environments (like the dentist, blood tests, or x-rays) to reduce anxiety and fear through anticipation and desensitization."
+        "short_description": "A website that helps prepare for medical visits using videos and cartoons.",
+        "long_description": "Doctor TEA is a website designed to make medical appointments less stressful for people with autism. It uses short videos and cartoons to show what happens during common health check-ups, like going to the dentist or getting a blood test. By showing these scenes beforehand, it helps reduce anxiety and fear so that users know exactly what to expect."
       },
       "es": {
         "name": "Doctor TEA",
-        "short_description": "Web para familiarizar a personas con autismo con procedimientos médicos mediante vídeos y viñetas.",
-        "long_description": "Doctor TEA es una plataforma web diseñada para facilitar las visitas médicas de las personas con autismo. Utiliza viñetas, vídeos y animaciones para explicar las pruebas médicas más frecuentes y los entornos (como el dentista, análisis de sangre o radiografías) para reducir la ansiedad y el miedo a través de la anticipación y la desensibilización."
+        "short_description": "Una web que ayuda a preparar las visitas médicas usando vídeos y dibujos.",
+        "long_description": "Doctor TEA es una página web diseñada para hacer que las visitas médicas sean menos estresantes para las personas con autismo. Utiliza vídeos cortos y dibujos para mostrar qué ocurre durante las pruebas de salud más comunes, como ir al dentista o hacerse un análisis de sangre. Al enseñar estas situaciones de antemano, ayuda a reducir la ansiedad y el miedo para que los usuarios sepan exactamente qué va a pasar."
       }
     }'::jsonb,
     
@@ -71,5 +71,5 @@ insert_platforms AS (
 
 -- 3. Categories 
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['social-stories', 'visual-schedules']) 
+SELECT id, unnest(ARRAY['social-stories']) 
 FROM new_app;

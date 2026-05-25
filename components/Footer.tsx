@@ -18,6 +18,7 @@ const translations = {
     contact: "Contact",
     source: "Source",
     builtWith: "Built for the neurodivergent community",
+    emailText: "Email",
     collaborators: "Collaborators"
   },
   es: {
@@ -28,6 +29,7 @@ const translations = {
     contact: "Contacto",
     source: "Código",
     builtWith: "Creado para la comunidad neurodivergente",
+    emailText: "Correo electrónico",
     collaborators: "Colaboradores"
   }
 };
@@ -129,13 +131,18 @@ export function Footer({ lang = "es" }: { lang?: "en" | "es" }) {
             <h4 className="text-brandBlue font-bold mb-4 uppercase tracking-wider text-xs">
               {content.contact}
             </h4>
-            <a
-              href={`mailto:${CONTACT_LINK.EMAIL}`}
-              className="flex items-center gap-2 text-gray-500 hover:text-brandBlue transition-colors text-sm font-medium"
+            <div
+              className="flex items-center gap-2 text-gray-500 text-sm font-medium"
             >
               <FaEnvelope className="text-brandBlue/60" />
-              {CONTACT_LINK.EMAIL}
-            </a>
+              {content.emailText}:
+              <a
+                href={`mailto:${CONTACT_LINK.EMAIL}`}
+                className="hover:text-brandBlue transition-colors"
+              >
+                {CONTACT_LINK.EMAIL}
+              </a>
+            </div>
           </div>
 
 

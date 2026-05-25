@@ -15,12 +15,12 @@ import {
   FaCircle,
   FaRegCircle,
   FaChevronLeft,
-  FaClock,
 } from "react-icons/fa";
 import { getAppById } from "@/src/lib/getAppById";
 import { RatingInfo } from "@/components/RatingInfo";
 import NotFoundPage from "../../not-found";
 import AppSuggestions from "@/components/AppSuggestions";
+import { getCategoryName } from "@/src/lib/categoryTranslations"; // 1. Importar traductor de categorías
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -204,7 +204,16 @@ export default async function AppDetailPage({ params }: PageProps) {
                 <div>
                   <h4 className="text-xs font-bold text-brandGrayDark uppercase tracking-wider mb-3">{t.categories}</h4>
                   <div className="flex flex-wrap gap-2">
-                    {app.categories.map((c: string) => <span key={c} className="px-3 py-1 rounded-full bg-brandGrayLight text-xs font-medium border border-brandGray">{c}</span>)}
+                    {/* 2. Envolver categoría en Link y usar getCategoryName */}
+                    {app.categories.map((c: string) => (
+                      <Link 
+                        href={`/apps?category=${c}`} 
+                        key={c} 
+                        className="px-3 py-1 rounded-full bg-brandGrayLight text-xs font-medium border border-brandGray hover:border-brandBlue hover:text-brandBlue transition-colors cursor-pointer"
+                      >
+                        {getCategoryName(c, lang)}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               )}
@@ -212,7 +221,16 @@ export default async function AppDetailPage({ params }: PageProps) {
                 <div>
                   <h4 className="text-xs font-bold text-brandGrayDark uppercase tracking-wider mb-2">{t.languages}</h4>
                   <div className="flex flex-wrap gap-2">
-                    {app.languages.map((code: string) => <span key={code} className="px-3 py-1 rounded-full bg-brandGrayLight text-xs font-medium border border-brandGray">{getLanguageName(code, lang)}</span>)}
+                    {/* 3. Envolver lenguaje en Link */}
+                    {app.languages.map((code: string) => (
+                      <Link 
+                        href={`/apps?language=${code}`}
+                        key={code} 
+                        className="px-3 py-1 rounded-full bg-brandGrayLight text-xs font-medium border border-brandGray hover:border-brandBlue hover:text-brandBlue transition-colors cursor-pointer"
+                      >
+                        {getLanguageName(code, lang)}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               )}

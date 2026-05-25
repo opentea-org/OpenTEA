@@ -24,13 +24,13 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Dictapicto",
-        "short_description": "Real-time voice-to-pictogram translator to anticipate activities.",
-        "long_description": "Dictapicto allows the conversion of oral language into visual information in real time. Designed to improve access to information for people with ASD, the app translates spoken words into a sequence of pictograms. It is particularly useful for anticipating activities, sequencing tasks, and clarifying instructions in a visual format."
+        "short_description": "A tool that shows pictograms while you talk, perfect for clear communication.",
+        "long_description": "Dictapicto makes spoken communication easier to understand by showing pictograms in real time. It is a great way to help people with autism grasp information quickly and reduce confusion. Families and professionals can use it to talk about plans for the day, explain new activities, or give instructions in a clear, visual way that is easy to remember."
       },
       "es": {
         "name": "Dictapicto",
-        "short_description": "Traductor de voz a pictogramas en tiempo real para anticipar actividades.",
-        "long_description": "Dictapicto permite convertir el lenguaje oral en información visual en tiempo real. Diseñada para mejorar el acceso a la información de personas con TEA, la aplicación traduce las palabras habladas a una secuencia de pictogramas. Es especialmente útil para anticipar actividades, secuenciar tareas y aclarar instrucciones en un formato visual."
+        "short_description": "Una herramienta que muestra pictogramas mientras hablas, ideal para comunicarse con claridad.",
+        "long_description": "Dictapicto hace que el habla sea más fácil de entender al mostrar pictogramas al instante. Es una forma excelente de ayudar a las personas con autismo a captar información rápidamente y evitar confusiones. Las familias y profesionales pueden usarla para hablar sobre los planes del día, explicar actividades nuevas o dar instrucciones de una forma visual, clara y fácil de recordar."
       }
     }'::jsonb,
     
@@ -71,5 +71,5 @@ insert_platforms AS (
 
 -- 3. Categories 
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['visual-schedules', 'symbol-boards']) 
+SELECT id, unnest(ARRAY['text-to-speech']) 
 FROM new_app;

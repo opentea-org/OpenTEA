@@ -21,16 +21,16 @@ WITH new_app AS (
     'sigueme',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "Sígueme",
-        "short_description": "Tool to develop visual attention and the acquisition of meaning.",
-        "long_description": "Sígueme is designed to enhance visual attention and the association between objects and their representations (photos, pictograms, drawings) in people with ASD. It presents six progressive phases ranging from capturing attention with visual and auditory stimuli to generalizing concepts using real-life objects, videos, and games."
+        "short_description": "A tool to help develop focus and understand the meaning of everyday objects.",
+        "long_description": "Sígueme is designed to help people with autism improve their visual focus and learn to connect real objects with their photos or pictograms. It features six step-by-step levels that start by capturing attention using engaging sounds and images. It then advances to teaching how to recognize everyday items in real life using videos and games."
       },
       "es": {
         "name": "Sígueme",
-        "short_description": "Herramienta para desarrollar la atención visual y la adquisición de significado.",
-        "long_description": "Sígueme está diseñada para potenciar la atención visual y la asociación entre objetos y sus representaciones (fotos, pictogramas, dibujos) en personas con TEA. Presenta seis fases progresivas que van desde la captación de la atención con estímulos visuales y auditivos hasta la generalización de conceptos usando objetos reales, vídeos y juegos."
+        "short_description": "Una herramienta para desarrollar la atención y entender el significado de las cosas.",
+        "long_description": "Sígueme está diseñada para ayudar a las personas con autismo a mejorar su atención visual y aprender a conectar objetos reales con sus fotos o pictogramas. Cuenta con seis niveles paso a paso que comienzan llamando la atención mediante sonidos e imágenes atractivas. Luego avanza hasta enseñar a reconocer las cosas del día a día en la vida real utilizando vídeos y juegos."
       }
     }'::jsonb,
     

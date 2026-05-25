@@ -21,16 +21,16 @@ WITH new_app AS (
     'avaz-aac',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "Avaz AAC",
-        "short_description": "Picture and text-based AAC app with predictive capabilities.",
-        "long_description": "Avaz AAC is an augmentative and alternative communication app designed for autism and speech difficulties. It offers three levels of vocabulary (picture-based) and a keyboard mode with prediction for literate users. The app includes a dashboard to track the communicator''s progress and vocabulary usage."
+        "short_description": "A communication app that uses pictures and text, with smart tools to help users speak.",
+        "long_description": "Avaz AAC is a tool designed to help children and adults with autism or speech difficulties find their voice. It offers three different levels of vocabulary using pictures, and includes a keyboard with helpful word suggestions for those who can read and write. It also features a special area for families and professionals to see how the user is progressing and which words they use most often."
       },
       "es": {
         "name": "Avaz AAC",
-        "short_description": "App de CAA basada en imágenes y texto con capacidades predictivas (Solo en inglés).",
-        "long_description": "Avaz AAC es una aplicación de comunicación aumentativa y alternativa diseñada para el autismo y dificultades del habla. Ofrece tres niveles de vocabulario (basado en imágenes) y un modo teclado con predicción para usuarios alfabetizados. La aplicación incluye un panel de control para rastrear el progreso del comunicador y el uso del vocabulario."
+        "short_description": "Una aplicación de comunicación que usa imágenes y texto, con herramientas inteligentes para ayudar a hablar.",
+        "long_description": "Avaz AAC es una herramienta diseñada para ayudar a niños y adultos con autismo o dificultades para hablar a encontrar su propia voz. Ofrece tres niveles de vocabulario basados en imágenes e incluye un teclado con sugerencias de palabras para quienes ya saben leer y escribir. También cuenta con un espacio especial para que las familias y los profesionales puedan ver cómo progresa el usuario y qué palabras utiliza con más frecuencia."
       }
     }'::jsonb,
     
@@ -71,5 +71,5 @@ insert_platforms AS (
 
 -- 3. Categories 
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['mixed-communication']) 
+SELECT id, unnest(ARRAY['text-to-speech', 'symbol-boards']) 
 FROM new_app;

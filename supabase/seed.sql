@@ -5,8 +5,6 @@
 insert into public.categories (id) values
   ('text-to-speech'),
   ('symbol-boards'),
-  ('mixed-communication'),
-  ('first-communicators'),
   ('social-stories'),
   ('visual-schedules'),
   ('learning-games');
@@ -53,15 +51,15 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Cboard",
-        "short_description": "Open-source AAC communication board with offline support.",
-        "long_description": "Cboard is a free, open-source augmentative and alternative communication (AAC) web application for children and adults with speech and language impairments, aiding communication with symbols and text-to-speech. It supports 33+ languages, works offline, allows custom board creation, and is compatible with modern browsers on desktops, tablets, and mobile phones."
+        "short_description": "A completely free, multi-language communication board that works without internet.",
+        "long_description": "Cboard is a free tool designed to help children and adults with speech difficulties communicate instantly. It uses pictures and symbols to help users express themselves easily and supports more than 33 languages. It allows families to create custom picture boards from scratch and works completely without an internet connection."
       },
       "es": {
         "name": "Cboard",
-        "short_description": "Tablero de comunicación CAA de código abierto y con soporte offline.",
-        "long_description": "Cboard es una aplicación web gratuita y de código abierto de comunicación aumentativa y alternativa (CAA) para niños y adultos con dificultades del habla. Ayuda a la comunicación mediante símbolos y texto a voz. Soporta más de 33 idiomas, funciona sin conexión, permite crear tableros personalizados y es compatible con navegadores modernos en ordenadores, tabletas y móviles."
+        "short_description": "Un tablero de comunicación totalmente gratuito, multiidioma y que funciona sin internet.",
+        "long_description": "Cboard es una herramienta gratuita diseñada para ayudar a comunicarse de forma inmediata a niños y adultos con dificultades para hablar. Utiliza imágenes y símbolos para que los usuarios se expresen con facilidad y cuenta con soporte para más de 33 idiomas. Permite a las familias crear tableros de imágenes personalizados desde cero y funciona completamente sin conexión a internet."
       }
-    }'::jsonb,
+      }'::jsonb,
     
     'freemium', -- Reference to public.price_types
     null,       -- price_amount_eur
@@ -87,7 +85,7 @@ WITH new_app AS (
 -- 1. App languages (App UI)
 insert_languages AS (
   INSERT INTO public.app_languages (app_id, language_id)
-  SELECT id, unnest(ARRAY['en', 'es']) 
+  SELECT id, unnest(ARRAY['en', 'es', 'fr', 'de']) 
   FROM new_app
 ),
 
@@ -100,7 +98,7 @@ insert_platforms AS (
 
 -- 3. Categories
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['symbol-boards']) 
+SELECT id, unnest(ARRAY['text-to-speech', 'symbol-boards']) 
 FROM new_app;-- ============================================================
 -- 02. APP DATA SEED: Proloquo2Go
 -- ============================================================
@@ -125,17 +123,17 @@ WITH new_app AS (
     
     -- Consolidated translations inside the JSONB column
     '{
-      "en": {
-        "name": "Proloquo2Go",
-        "short_description": "Symbol-based AAC application available for iOS devices.",
-        "long_description": "Proloquo2Go is a symbol-supported communication app developed for iPad and iPhone. It utilizes the Crescendo vocabulary system, offering customizable grid sizes to accommodate different literacy levels. The application supports text-to-speech with natural-sounding voices, allows for button and folder customization, and operates fully offline without an internet connection."
-      },
-      "es": {
-        "name": "Proloquo2Go",
-        "short_description": "Aplicación de CAA basada en símbolos disponible para dispositivos iOS.",
-        "long_description": "Proloquo2Go es una aplicación de comunicación basada en símbolos desarrollada para iPad y iPhone. Utiliza el sistema de vocabulario Crescendo, ofreciendo tamaños de cuadrícula personalizables para adaptarse a diferentes niveles de lectoescritura. La aplicación soporta texto a voz, permite la personalización de botones y carpetas, y funciona completamente sin conexión a internet."
-      }
-    }'::jsonb,
+          "en": {
+          "name": "Proloquo2Go",
+          "short_description": "An advanced communication app with an organized vocabulary that grows with the user.",
+          "long_description": "Proloquo2Go is a robust tool featuring a pre-arranged vocabulary designed to help users learn to build complete sentences over time. It is highly flexible, allowing families to change the number of buttons on the screen to match a person''s visual, physical, or reading skills without breaking their familiar layout. It reads words out loud using high-quality, natural-sounding voices and operates fully offline."
+        },
+          "es": {
+          "name": "Proloquo2Go",
+          "short_description": "Una aplicación avanzada de comunicación con un vocabulario organizado que crece con el usuario.",
+          "long_description": "Proloquo2Go es una herramienta robusta que incluye un vocabulario preorganizado, diseñado para ayudar a los usuarios a aprender a construir oraciones completas con el tiempo. Es muy flexible, permitiendo cambiar la cantidad de botones en pantalla para adaptarse a las capacidades visuales, físicas o de lectura de la persona sin alterar el orden al que ya se acostumbró. Lee las palabras en voz alta con voces muy naturales y funciona completamente sin internet."
+        }
+      }'::jsonb,
     
     'paid',   -- Reference to public.price_types
     300.00,   -- Price amount in EUR
@@ -174,7 +172,7 @@ insert_platforms AS (
 
 -- 3. Categories  
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['symbol-boards', 'mixed-communication']) 
+SELECT id, unnest(ARRAY['text-to-speech', 'symbol-boards']) 
 FROM new_app;-- ============================================================
 -- 03. APP DATA SEED: José Aprende
 -- ============================================================
@@ -199,17 +197,17 @@ WITH new_app AS (
     
     -- Consolidated translations inside the JSONB column
     '{
-      "en": {
-        "name": "José Aprende",
-        "short_description": "Interactive visual stories adapted with pictograms for routines and emotions.",
-        "long_description": "José Aprende is a collection of interactive stories designed for visual learners, covering themes of self-care, routines, and emotions. The application uses pictograms, interactive illustrations, and a read-aloud feature to support language acquisition and autonomy. It features a simplified interface suitable for children with autism and pre-readers."
-      },
-      "es": {
-        "name": "José Aprende",
-        "short_description": "Cuentos visuales interactivos con pictogramas para rutinas y emociones.",
-        "long_description": "José Aprende es una colección de cuentos interactivos diseñados para aprendices visuales, abarcando temas de autocuidado, rutinas y emociones. La aplicación utiliza pictogramas, ilustraciones interactivas y función de lectura automática para apoyar la adquisición del lenguaje y la autonomía. Cuenta con una interfaz simplificada apta para niños con autismo y pre-lectores."
-      }
-    }'::jsonb,
+  "en": {
+    "name": "José Aprende",
+    "short_description": "Interactive stories with pictures that teach daily routines and emotions.",
+    "long_description": "José Aprende is a collection of interactive stories for children who learn best with pictures. It covers everyday topics like personal care, daily habits, and feelings. The app uses simple drawings, animations, and reads the text out loud to help children learn new words and do things by themselves. Its design is very easy to navigate, making it ideal for children with autism and those who do not know how to read yet."
+  },
+  "es": {
+    "name": "José Aprende",
+    "short_description": "Cuentos interactivos con imágenes que enseñan rutinas diarias y emociones.",
+    "long_description": "José Aprende es una colección de cuentos interactivos para niños que aprenden mejor con imágenes. Abarca temas del día a día como el aseo personal, los hábitos y los sentimientos. La aplicación usa dibujos sencillos, animaciones y lee el texto en voz alta para ayudar a los niños a aprender nuevas palabras y hacer cosas por sí mismos. Su diseño es muy fácil de usar, ideal para niños con autismo y aquellos que todavía no saben leer."
+  }
+}'::jsonb,
     
     'free',   -- Reference to public.price_types
     null,     -- Price amount in EUR
@@ -275,13 +273,13 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Eva Aprende",
-        "short_description": "Interactive visual stories adapted with pictograms, featuring a female protagonist.",
-        "long_description": "Eva Aprende is a version of the \"José Aprende\" story collection featuring a female main character. It provides interactive visual stories specifically adapted for girls with autism and other learning difficulties. The app focuses on teaching autonomy, self-care, and emotions through pictograms, easy-to-read text, and audio support, functioning fully offline."
+        "short_description": "Interactive stories with pictures featuring a girl as the main character.",
+        "long_description": "Eva Aprende is a version of the \"José Aprende\" stories starring a girl. It offers digital books with pictures designed specially to help girls with autism or learning challenges. The app uses simple drawings, easy text, and a voice that reads out loud to teach daily habits, personal care, and feelings. It works completely without an internet connection."
       },
       "es": {
         "name": "Eva Aprende",
-        "short_description": "Cuentos visuales interactivos con pictogramas y protagonista femenina.",
-        "long_description": "Eva Aprende es una versión de la colección de cuentos \"José Aprende\" protagonizada por un personaje femenino. Ofrece historias visuales interactivas adaptadas específicamente para niñas con autismo y otras dificultades de aprendizaje. La aplicación se centra en la enseñanza de la autonomía, el autocuidado y las emociones mediante pictogramas, texto de lectura fácil y soporte de audio, funcionando completamente sin conexión."
+        "short_description": "Cuentos interactivos con imágenes que tienen a una niña como protagonista.",
+        "long_description": "Eva Aprende es una versión de los cuentos de \"José Aprende\" protagonizada por una niña. Ofrece libros digitales con imágenes pensados especialmente para ayudar a niñas con autismo o dificultades de aprendizaje. La aplicación usa dibujos sencillos, textos fáciles y una voz que lee en voz alta para enseñar hábitos diarios, aseo personal y sentimientos. Funciona completamente sin conexión a internet."
       }
     }'::jsonb,
     
@@ -342,13 +340,13 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Día a Día",
-        "short_description": "Visual diary and schedule organizer using pictograms and photos.",
-        "long_description": "Día a Día is a visual diary designed for people with autism and communication difficulties to structure their daily routine. It allows users to record and review daily activities using customized photos, pictograms, and text. The app functions as both an anticipation tool for upcoming events and a communication aid to recount past activities."
+        "short_description": "A visual diary and daily planner that uses photos and pictograms.",
+        "long_description": "Día a Día is a digital diary that helps people with autism or communication challenges organize their day. It lets users save and review their activities using their own photos, pictograms, and text. The app helps users prepare for what is going to happen next and gives them an easy way to show and talk about what they did earlier."
       },
       "es": {
         "name": "Día a Día",
-        "short_description": "Diario visual y organizador de agenda mediante pictogramas y fotos.",
-        "long_description": "Día a Día es un diario visual diseñado para personas con autismo y dificultades de comunicación para estructurar su rutina diaria. Permite registrar y revisar actividades diarias utilizando fotos personalizadas, pictogramas y texto. La aplicación funciona tanto como herramienta de anticipación para eventos futuros como ayuda comunicativa para relatar actividades pasadas."
+        "short_description": "Un diario visual y planificador diario que utiliza fotos y pictogramas.",
+        "long_description": "Día a Día es un diario digital que ayuda a personas con autismo o dificultades para comunicarse a organizar su día. Permite guardar y repasar las actividades usando fotos propias, pictogramas y texto. La aplicación sirve para que los usuarios sepan qué va a pasar después y les ofrece una forma muy fácil de mostrar y contar lo que ya han hecho."
       }
     }'::jsonb,
     
@@ -413,16 +411,16 @@ WITH new_app AS (
     'sigueme',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "Sígueme",
-        "short_description": "Tool to develop visual attention and the acquisition of meaning.",
-        "long_description": "Sígueme is designed to enhance visual attention and the association between objects and their representations (photos, pictograms, drawings) in people with ASD. It presents six progressive phases ranging from capturing attention with visual and auditory stimuli to generalizing concepts using real-life objects, videos, and games."
+        "short_description": "A tool to help develop focus and understand the meaning of everyday objects.",
+        "long_description": "Sígueme is designed to help people with autism improve their visual focus and learn to connect real objects with their photos or pictograms. It features six step-by-step levels that start by capturing attention using engaging sounds and images. It then advances to teaching how to recognize everyday items in real life using videos and games."
       },
       "es": {
         "name": "Sígueme",
-        "short_description": "Herramienta para desarrollar la atención visual y la adquisición de significado.",
-        "long_description": "Sígueme está diseñada para potenciar la atención visual y la asociación entre objetos y sus representaciones (fotos, pictogramas, dibujos) en personas con TEA. Presenta seis fases progresivas que van desde la captación de la atención con estímulos visuales y auditivos hasta la generalización de conceptos usando objetos reales, vídeos y juegos."
+        "short_description": "Una herramienta para desarrollar la atención y entender el significado de las cosas.",
+        "long_description": "Sígueme está diseñada para ayudar a las personas con autismo a mejorar su atención visual y aprender a conectar objetos reales con sus fotos o pictogramas. Cuenta con seis niveles paso a paso que comienzan llamando la atención mediante sonidos e imágenes atractivas. Luego avanza hasta enseñar a reconocer las cosas del día a día en la vida real utilizando vídeos y juegos."
       }
     }'::jsonb,
     
@@ -490,13 +488,13 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Dictapicto",
-        "short_description": "Real-time voice-to-pictogram translator to anticipate activities.",
-        "long_description": "Dictapicto allows the conversion of oral language into visual information in real time. Designed to improve access to information for people with ASD, the app translates spoken words into a sequence of pictograms. It is particularly useful for anticipating activities, sequencing tasks, and clarifying instructions in a visual format."
+        "short_description": "A tool that shows pictograms while you talk, perfect for clear communication.",
+        "long_description": "Dictapicto makes spoken communication easier to understand by showing pictograms in real time. It is a great way to help people with autism grasp information quickly and reduce confusion. Families and professionals can use it to talk about plans for the day, explain new activities, or give instructions in a clear, visual way that is easy to remember."
       },
       "es": {
         "name": "Dictapicto",
-        "short_description": "Traductor de voz a pictogramas en tiempo real para anticipar actividades.",
-        "long_description": "Dictapicto permite convertir el lenguaje oral en información visual en tiempo real. Diseñada para mejorar el acceso a la información de personas con TEA, la aplicación traduce las palabras habladas a una secuencia de pictogramas. Es especialmente útil para anticipar actividades, secuenciar tareas y aclarar instrucciones en un formato visual."
+        "short_description": "Una herramienta que muestra pictogramas mientras hablas, ideal para comunicarse con claridad.",
+        "long_description": "Dictapicto hace que el habla sea más fácil de entender al mostrar pictogramas al instante. Es una forma excelente de ayudar a las personas con autismo a captar información rápidamente y evitar confusiones. Las familias y profesionales pueden usarla para hablar sobre los planes del día, explicar actividades nuevas o dar instrucciones de una forma visual, clara y fácil de recordar."
       }
     }'::jsonb,
     
@@ -537,7 +535,7 @@ insert_platforms AS (
 
 -- 3. Categories 
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['visual-schedules', 'symbol-boards']) 
+SELECT id, unnest(ARRAY['text-to-speech']) 
 FROM new_app;-- ============================================================
 -- 08. APP DATA SEED: PictogramAgenda
 -- ============================================================
@@ -561,16 +559,16 @@ WITH new_app AS (
     'pictogramagenda',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "PictogramAgenda",
-        "short_description": "Visual schedule tool to organize sequences of daily activities.",
-        "long_description": "PictogramAgenda allows the configuration and display of visual sequences using pictograms to structure daily routines. The interface presents a vertical timeline where users can cross out completed tasks, helping to understand the passage of time and the order of activities without complex navigation."
+        "short_description": "A visual agenda to organize daily activities with pictograms.",
+        "long_description": "PictogramAgenda helps organize daily routines by showing a sequence of pictograms. It displays tasks in a simple list that is easy to follow. Users can cross out each task as they finish it, which helps them understand the order of events and track how the day is moving forward without any complicated menus."
       },
       "es": {
         "name": "PictogramAgenda",
-        "short_description": "Herramienta de agenda visual para organizar secuencias de actividades diarias.",
-        "long_description": "PictogramAgenda permite configurar y mostrar secuencias visuales mediante pictogramas para estructurar las rutinas diarias. La interfaz presenta una línea temporal vertical donde los usuarios pueden tachar las tareas completadas, ayudando a comprender el paso del tiempo y el orden de las actividades sin una navegación compleja."
+        "short_description": "Una agenda visual para organizar las actividades del día con pictogramas.",
+        "long_description": "PictogramAgenda ayuda a organizar las rutinas diarias mostrando una secuencia de pictogramas. Muestra las tareas en una lista sencilla fácil de seguir. Los usuarios pueden tachar cada tarea a medida que la terminan, lo que ayuda a comprender el orden de las cosas y a ver cómo avanza el día sin menús complicados."
       }
     }'::jsonb,
     
@@ -635,16 +633,16 @@ WITH new_app AS (
     'mita-lang',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "MITA: Language Therapy",
-        "short_description": "Adaptive early intervention application for language and cognitive development.",
-        "long_description": "MITA (Mental Imagery Therapy for Autism) is a clinically validated early-intervention application for children with ASD. It utilizes interactive puzzles designed to develop mental imagery and language skills. The app features an adaptive algorithm that adjusts the difficulty level in real-time based on the child''s performance, providing a personalized learning path."
+        "short_description": "An interactive app that helps children learn language and think in images.",
+        "long_description": "MITA is an app designed to help children with autism learn language and communication skills through fun puzzles. It helps children practice visualizing objects and concepts, which is a key part of learning to talk. The app automatically changes the difficulty level based on how the child is playing, so it is always a good challenge that matches their own pace."
       },
       "es": {
         "name": "MITA: Terapia del Lenguaje y Cognitiva",
-        "short_description": "Aplicación de atención temprana adaptativa para el desarrollo del lenguaje y cognitivo.",
-        "long_description": "MITA (Terapia de Imagen Mental para el Autismo) es una aplicación de atención temprana validada clínicamente para niños con TEA. Utiliza puzles interactivos diseñados para desarrollar la imaginación mental y las habilidades lingüísticas. La app cuenta con un algoritmo adaptativo que ajusta el nivel de dificultad en tiempo real según el rendimiento del niño, ofreciendo una ruta de aprendizaje personalizada."
+        "short_description": "Una aplicación interactiva que ayuda a los niños a aprender el lenguaje y a pensar con imágenes.",
+        "long_description": "MITA es una aplicación diseñada para ayudar a niños con autismo a aprender habilidades lingüísticas y de comunicación a través de divertidos puzles. Ayuda a los niños a practicar cómo imaginar objetos y conceptos, algo fundamental para aprender a hablar. La aplicación cambia automáticamente el nivel de dificultad según cómo juegue el niño, para que el reto sea siempre el adecuado y vaya a su propio ritmo."
       }
     }'::jsonb,
     
@@ -709,16 +707,16 @@ WITH new_app AS (
     'mita-math',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "MITA: Math & Logic",
-        "short_description": "Adaptive games for arithmetic, geometry, and logical reasoning.",
-        "long_description": "MITA: Math & Logic is an educational application designed to teach early math concepts and reasoning skills. It covers arithmetic, geometry, and logic through gamified exercises. Like its language counterpart, it uses an adaptive algorithm that adjusts the difficulty of the puzzles based on the user''s accuracy and progress."
+        "short_description": "Interactive games to learn basic math and problem-solving skills.",
+        "long_description": "MITA: Math & Logic is an educational app that helps children learn early math concepts and logical thinking through fun activities. It covers topics like numbers, shapes, and sorting through simple puzzles. Just like the language version of the app, it automatically adjusts the difficulty based on how the child is doing, so it always provides a challenge that is just right for them."
       },
       "es": {
         "name": "MITA: Matemáticas y Lógica",
-        "short_description": "Juegos adaptativos de aritmética, geometría y razonamiento lógico.",
-        "long_description": "MITA: Matemáticas y Lógica es una aplicación educativa diseñada para enseñar conceptos matemáticos tempranos y habilidades de razonamiento. Cubre aritmética, geometría y lógica a través de ejercicios gamificados. Al igual que su versión de lenguaje, utiliza un algoritmo adaptativo que ajusta la dificultad de los puzles basándose en la precisión y el progreso del usuario."
+        "short_description": "Juegos interactivos para aprender matemáticas básicas y a resolver problemas.",
+        "long_description": "MITA: Matemáticas y Lógica es una aplicación educativa que ayuda a los niños a aprender los primeros conceptos matemáticos y a pensar de forma lógica mediante actividades divertidas. Enseña números, formas y a clasificar objetos a través de puzles sencillos. Al igual que la otra versión de la aplicación, cambia automáticamente la dificultad según cómo lo haga el niño, por lo que siempre ofrece un reto que se ajusta perfectamente a su ritmo."
       }
     }'::jsonb,
     
@@ -786,13 +784,13 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Proloquo",
-        "short_description": "AAC app designed for literacy and ease of use.",
-        "long_description": "Proloquo is a subscription-based AAC application for iOS designed to build language skills alongside literacy. It utilizes the \"Crescendo Evolution\" vocabulary system, which reduces the need for customization by offering a logically organized layout. It features cloud synchronization across devices and allows free access for families and educators to support the user."
+        "short_description": "An app that helps users develop language and reading skills in an easy way.",
+        "long_description": "Proloquo is a tool designed to help people build their language and reading skills. It comes with a pre-organized vocabulary, which means families do not have to spend a lot of time setting up everything from scratch. It stays updated across different devices and allows families and teachers to easily join in and support the user in their daily communication."
       },
       "es": {
         "name": "Proloquo",
-        "short_description": "App de CAA diseñada para la alfabetización y facilidad de uso.",
-        "long_description": "Proloquo es una aplicación de CAA por suscripción para iOS diseñada para desarrollar habilidades lingüísticas junto con la lectoescritura. Utiliza el sistema de vocabulario \"Crescendo Evolution\", que reduce la necesidad de personalización ofreciendo una distribución organizada lógicamente. Cuenta con sincronización en la nube entre dispositivos y permite acceso gratuito a familias y educadores para apoyar al usuario."
+        "short_description": "Una aplicación que ayuda a desarrollar el lenguaje y la lectura de forma sencilla.",
+        "long_description": "Proloquo es una herramienta diseñada para ayudar a las personas a desarrollar sus habilidades lingüísticas y de lectura. Incluye un vocabulario organizado previamente, lo que significa que las familias no necesitan dedicar mucho tiempo a configurar todo desde cero. Se mantiene actualizada en diferentes dispositivos y permite que tanto familias como educadores se sumen fácilmente para apoyar al usuario en su comunicación diaria."
       }
     }'::jsonb,
     
@@ -833,7 +831,7 @@ insert_platforms AS (
 
 -- 3. Categories 
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['mixed-communication']) 
+SELECT id, unnest(ARRAY['text-to-speech', 'symbol-boards']) 
 FROM new_app;-- ============================================================
 -- 12. APP DATA SEED: Avaz AAC
 -- ============================================================
@@ -857,16 +855,16 @@ WITH new_app AS (
     'avaz-aac',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "Avaz AAC",
-        "short_description": "Picture and text-based AAC app with predictive capabilities.",
-        "long_description": "Avaz AAC is an augmentative and alternative communication app designed for autism and speech difficulties. It offers three levels of vocabulary (picture-based) and a keyboard mode with prediction for literate users. The app includes a dashboard to track the communicator''s progress and vocabulary usage."
+        "short_description": "A communication app that uses pictures and text, with smart tools to help users speak.",
+        "long_description": "Avaz AAC is a tool designed to help children and adults with autism or speech difficulties find their voice. It offers three different levels of vocabulary using pictures, and includes a keyboard with helpful word suggestions for those who can read and write. It also features a special area for families and professionals to see how the user is progressing and which words they use most often."
       },
       "es": {
         "name": "Avaz AAC",
-        "short_description": "App de CAA basada en imágenes y texto con capacidades predictivas (Solo en inglés).",
-        "long_description": "Avaz AAC es una aplicación de comunicación aumentativa y alternativa diseñada para el autismo y dificultades del habla. Ofrece tres niveles de vocabulario (basado en imágenes) y un modo teclado con predicción para usuarios alfabetizados. La aplicación incluye un panel de control para rastrear el progreso del comunicador y el uso del vocabulario."
+        "short_description": "Una aplicación de comunicación que usa imágenes y texto, con herramientas inteligentes para ayudar a hablar.",
+        "long_description": "Avaz AAC es una herramienta diseñada para ayudar a niños y adultos con autismo o dificultades para hablar a encontrar su propia voz. Ofrece tres niveles de vocabulario basados en imágenes e incluye un teclado con sugerencias de palabras para quienes ya saben leer y escribir. También cuenta con un espacio especial para que las familias y los profesionales puedan ver cómo progresa el usuario y qué palabras utiliza con más frecuencia."
       }
     }'::jsonb,
     
@@ -907,7 +905,7 @@ insert_platforms AS (
 
 -- 3. Categories 
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['mixed-communication']) 
+SELECT id, unnest(ARRAY['text-to-speech', 'symbol-boards']) 
 FROM new_app;-- ============================================================
 -- 13. APP DATA SEED: Doctor TEA
 -- ============================================================
@@ -931,16 +929,16 @@ WITH new_app AS (
     'doctor-tea',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "Doctor TEA",
-        "short_description": "Web platform to familiarize people with autism with medical procedures using cartoons and videos.",
-        "long_description": "Doctor TEA is a web platform designed to facilitate medical visits for people with autism. It uses vignettes, videos and animations to explain common medical tests and environments (like the dentist, blood tests, or x-rays) to reduce anxiety and fear through anticipation and desensitization."
+        "short_description": "A website that helps prepare for medical visits using videos and cartoons.",
+        "long_description": "Doctor TEA is a website designed to make medical appointments less stressful for people with autism. It uses short videos and cartoons to show what happens during common health check-ups, like going to the dentist or getting a blood test. By showing these scenes beforehand, it helps reduce anxiety and fear so that users know exactly what to expect."
       },
       "es": {
         "name": "Doctor TEA",
-        "short_description": "Web para familiarizar a personas con autismo con procedimientos médicos mediante vídeos y viñetas.",
-        "long_description": "Doctor TEA es una plataforma web diseñada para facilitar las visitas médicas de las personas con autismo. Utiliza viñetas, vídeos y animaciones para explicar las pruebas médicas más frecuentes y los entornos (como el dentista, análisis de sangre o radiografías) para reducir la ansiedad y el miedo a través de la anticipación y la desensibilización."
+        "short_description": "Una web que ayuda a preparar las visitas médicas usando vídeos y dibujos.",
+        "long_description": "Doctor TEA es una página web diseñada para hacer que las visitas médicas sean menos estresantes para las personas con autismo. Utiliza vídeos cortos y dibujos para mostrar qué ocurre durante las pruebas de salud más comunes, como ir al dentista o hacerse un análisis de sangre. Al enseñar estas situaciones de antemano, ayuda a reducir la ansiedad y el miedo para que los usuarios sepan exactamente qué va a pasar."
       }
     }'::jsonb,
     
@@ -981,7 +979,7 @@ insert_platforms AS (
 
 -- 3. Categories 
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['social-stories', 'visual-schedules']) 
+SELECT id, unnest(ARRAY['social-stories']) 
 FROM new_app;-- ============================================================
 -- 14. APP DATA SEED: AsTeRICS Grid
 -- ============================================================
@@ -1005,16 +1003,16 @@ WITH new_app AS (
     'asterics-grid',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "AsTeRICS Grid",
-        "short_description": "Free and open-source web-based AAC communicator using ARASAAC pictograms.",
-        "long_description": "AsTeRICS Grid is a cross-platform web application for augmentative communication. It allows the creation of fully customizable communication boards using ARASAAC symbols and supports text-to-speech. While powerful and compatible with various input methods (including eye-tracking), the initial configuration and editing interface have a steep learning curve."
+        "short_description": "A free, customizable communication tool using pictograms to help people speak.",
+        "long_description": "AsTeRICS Grid is a free web tool that helps people communicate by creating personalized boards with pictures. It uses standard ARASAAC symbols and can read text out loud. It is a very powerful and flexible tool that works on many different devices and supports different ways of controlling the screen. Please note that because it is so advanced, it may take a little time to learn how to set it up and customize it exactly as you need."
       },
       "es": {
         "name": "AsTeRICS Grid",
-        "short_description": "Comunicador web de CAA gratuito y de código abierto que utiliza pictogramas de ARASAAC.",
-        "long_description": "AsTeRICS Grid es una aplicación web multiplataforma para la comunicación aumentativa. Permite crear tableros de comunicación totalmente personalizables utilizando símbolos ARASAAC y soporta texto a voz. Aunque es potente y compatible con varios métodos de entrada (incluido el seguimiento ocular), la configuración inicial y la interfaz de edición tienen una curva de aprendizaje alta."
+        "short_description": "Una herramienta de comunicación gratuita y personalizable que usa pictogramas para ayudar a hablar.",
+        "long_description": "AsTeRICS Grid es una herramienta web gratuita que ayuda a las personas a comunicarse creando tableros personalizados con imágenes. Utiliza los símbolos ARASAAC y puede leer el texto en voz alta. Es una herramienta muy potente y flexible que funciona en diferentes dispositivos y permite diversas formas de controlar la pantalla. Ten en cuenta que, al ser tan completa, puede llevar un poco de tiempo aprender a configurarla y personalizarla exactamente como la necesites."
       }
     }'::jsonb,
     

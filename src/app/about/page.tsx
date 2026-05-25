@@ -2,17 +2,16 @@
 
 import Link from "next/link";
 import { cookies } from "next/headers";
-import {
-  FaChevronLeft,
-  FaHeart,
-  FaLightbulb,
-  FaEnvelope,
-  FaCode,
-  FaUniversalAccess,
-} from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { 
+  faChevronLeft,
+  faHeart, 
+  faLightbulb, 
+  faEnvelope, 
+  faCode, 
+  faUniversalAccess 
+} from "@fortawesome/free-solid-svg-icons";
 import { CONTACT_LINK } from "@/data/contact-info";
-
-
 import { highlightEmphasis } from "@/src/utils/formatEmphasis";
 
 // --- Translations ---
@@ -42,7 +41,7 @@ const translations = {
 
     // 4. Open Source
     openSourceTitle: "A Community Project",
-    openSourceText: "This is an **Open Source** project. This means the code is public so that other developers and families can help us improve the site and keep it free and updated forever.",
+    openSourceText: "This is an **Open Source** project. This means the code is public so that other developers and families can help us improve the site and keep it free and updated.",
 
     contactTitle: "Have a question or a suggestion?",
     contactButton: "Send a message"
@@ -71,7 +70,7 @@ const translations = {
 
     // 4. Open Source
     openSourceTitle: "Un proyecto de la comunidad",
-    openSourceText: "Este es un proyecto de **Código Abierto (Open Source)**. Esto significa que el código es público para que otros desarrolladores y familias nos ayuden a mejorar y mantener el sitio gratuito siempre.",
+    openSourceText: "Este es un proyecto de **Código Abierto (Open Source)**. Esto significa que el código es público para que otros desarrolladores y familias nos ayuden a mejorar y mantener el sitio gratuito.",
 
     contactTitle: "¿Tienes alguna pregunta o sugerencia?",
     contactButton: "Enviar un mensaje"
@@ -93,7 +92,7 @@ export default async function AboutPage() {
           className="group inline-flex items-center text-sm font-medium text-brandGrayDark hover:text-brandBlue mb-8 transition-colors"
         >
           <div className="mr-2 p-1 rounded-full group-hover:bg-brandBlue/10 transition-colors">
-            <FaChevronLeft className="w-3 h-3" />
+            <FontAwesomeIcon icon={faChevronLeft} className="w-3 h-3" />
           </div>
           {content.back}
         </Link>
@@ -115,7 +114,7 @@ export default async function AboutPage() {
           <section className="space-y-4">
             <div className="flex items-center gap-3 mb-2">
               <div className="p-2.5 bg-red-50 text-red-500 rounded-xl">
-                <FaHeart className="text-xl" />
+                <FontAwesomeIcon icon={faHeart} className="text-xl" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900">{content.inspirationTitle}</h2>
             </div>
@@ -131,7 +130,7 @@ export default async function AboutPage() {
           <section className="space-y-4">
             <div className="flex items-center gap-3 mb-2">
               <div className="p-2.5 bg-brandBlue/10 text-brandBlue rounded-xl">
-             <FaUniversalAccess className="text-xl" />
+                <FontAwesomeIcon icon={faUniversalAccess} className="text-xl" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900">{content.meaningTitle}</h2>
             </div>
@@ -147,7 +146,7 @@ export default async function AboutPage() {
           <section className="space-y-4">
             <div className="flex items-center gap-3 mb-2">
               <div className="p-2.5 bg-amber-50 text-amber-500 rounded-xl">
-                <FaLightbulb className="text-xl" />
+                <FontAwesomeIcon icon={faLightbulb} className="text-xl" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900">{content.missionTitle}</h2>
             </div>
@@ -158,7 +157,7 @@ export default async function AboutPage() {
             <ul className="space-y-4 mt-4">
               {content.missionList.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3 text-gray-700">
-                  <span className="mt-2 w-2 h-2 bg-brandGreen rounded-full shrink-0" />
+                  <span className="mt-2 w-2 h-2 bg-amber-500 rounded-full shrink-0" />
                   <span 
                     className="text-lg"
                     dangerouslySetInnerHTML={{ __html: highlightEmphasis(item, false) }}
@@ -174,7 +173,7 @@ export default async function AboutPage() {
           <section className="space-y-4">
             <div className="flex items-center gap-3 mb-2">
               <div className="p-2.5 bg-brandGreen/10 text-brandGreen rounded-xl">
-                <FaCode className="text-xl" />
+                <FontAwesomeIcon icon={faCode} className="text-xl" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900">{content.openSourceTitle}</h2>
             </div>
@@ -197,7 +196,7 @@ export default async function AboutPage() {
             href={`mailto:${CONTACT_LINK.EMAIL}`}
             className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-brandBlue text-white font-bold transition-all hover:bg-brandBlue/90 hover:shadow-lg"
           >
-            <FaEnvelope />
+            <FontAwesomeIcon icon={faEnvelope} />
             {content.contactButton}
           </a>
         </div>

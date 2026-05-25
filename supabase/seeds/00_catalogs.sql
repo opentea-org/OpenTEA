@@ -5,8 +5,6 @@
 insert into public.categories (id) values
   ('text-to-speech'),
   ('symbol-boards'),
-  ('mixed-communication'),
-  ('first-communicators'),
   ('social-stories'),
   ('visual-schedules'),
   ('learning-games');

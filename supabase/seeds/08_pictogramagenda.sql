@@ -21,16 +21,16 @@ WITH new_app AS (
     'pictogramagenda',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "PictogramAgenda",
-        "short_description": "Visual schedule tool to organize sequences of daily activities.",
-        "long_description": "PictogramAgenda allows the configuration and display of visual sequences using pictograms to structure daily routines. The interface presents a vertical timeline where users can cross out completed tasks, helping to understand the passage of time and the order of activities without complex navigation."
+        "short_description": "A visual agenda to organize daily activities with pictograms.",
+        "long_description": "PictogramAgenda helps organize daily routines by showing a sequence of pictograms. It displays tasks in a simple list that is easy to follow. Users can cross out each task as they finish it, which helps them understand the order of events and track how the day is moving forward without any complicated menus."
       },
       "es": {
         "name": "PictogramAgenda",
-        "short_description": "Herramienta de agenda visual para organizar secuencias de actividades diarias.",
-        "long_description": "PictogramAgenda permite configurar y mostrar secuencias visuales mediante pictogramas para estructurar las rutinas diarias. La interfaz presenta una línea temporal vertical donde los usuarios pueden tachar las tareas completadas, ayudando a comprender el paso del tiempo y el orden de las actividades sin una navegación compleja."
+        "short_description": "Una agenda visual para organizar las actividades del día con pictogramas.",
+        "long_description": "PictogramAgenda ayuda a organizar las rutinas diarias mostrando una secuencia de pictogramas. Muestra las tareas en una lista sencilla fácil de seguir. Los usuarios pueden tachar cada tarea a medida que la terminan, lo que ayuda a comprender el orden de las cosas y a ver cómo avanza el día sin menús complicados."
       }
     }'::jsonb,
     

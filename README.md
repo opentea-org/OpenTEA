@@ -1,4 +1,4 @@
-![Next.js](https://img.shields.io/badge/Next.js-16.1-black) ![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green) ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)  ![License](https://img.shields.io/badge/License-MIT-yellow) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=flat&logo=ko-fi&logoColor=white)](https://ko-fi.com/opentea)
+![Next.js](https://img.shields.io/badge/Next.js-16.2-black) ![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green) ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)  ![License](https://img.shields.io/badge/License-MIT-yellow) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=flat&logo=ko-fi&logoColor=white)](https://ko-fi.com/opentea)
 
 # 🐿️ OpenTEA
 
@@ -10,13 +10,14 @@ Our goal is to help families, therapists and users find the right digital tools 
 
 ![OpenTEA's app directory screenshot](public/screenshots/opentea_apps_directory.png)
 
+
 ## Evaluation criteria
 
 Choosing the right assistive tool is a personal journey. To help you make informed decisions, we evaluate every application in our directory based on three core accessibility pillars.
 
 | Criteria | What it measures | Goal |
 | --- | --- | --- |
-| **Ease of Use** | Interface intuitiveness and motor skill requirements. | **Higher is better:** Seeking smooth, accessible navigation. |
+| **Ease of Use** | Interface intuitiveness requirements. | **Higher is better:** Seeking smooth, accessible navigation. |
 | **Cognitive Load** | How much mental processing is required to use the app. | **Goal-dependent:** Low (1-2) for relaxation, High (3-5) for active learning. |
 | **Sensory Load** | Visual stimuli, sound effects, and overall sensory intensity. | **Lower is better:** Ideal for users with sensory sensitivities. |
 
@@ -26,13 +27,13 @@ Choosing the right assistive tool is a personal journey. To help you make inform
 
 We categorize our apps to help you find the perfect match for specific communication or learning needs.
 
+* **Text to Speech:** Apps that convert typed text into spoken words.   
 * **Symbol Boards:** Flexible grids for building sentences and expressing needs.
-* **Mixed Communication:** Hybrid tools that combine symbols, text, and media.
 * **Social Stories:** Apps that model social interactions and behaviors through narrative.
 * **Visual Schedules:** Tools to help manage daily routines, reducing anxiety through predictability.
 * **Learning Games:** Engaging activities designed to reinforce cognitive and language skills.
 
-> **Inspiration:** Our classification framework is heavily inspired by [CALLScotland](https://www.callscotland.org.uk/downloads/posters-and-leaflets/ipad-apps-for-complex-communication-support-needs/) poster.
+> **Inspiration:** Our classification is inspired by [CALLScotland poster](https://www.callscotland.org.uk/downloads/posters-and-leaflets/ipad-apps-for-complex-communication-support-needs/).
 
 
 ## 🚀 Getting started
@@ -55,17 +56,11 @@ npm install
 
 ### 2. Local database setup
 
-We use Supabase locally to keep everything synchronized.
-
-1. Run the local environment: `supabase start`
-2. Populate the database: `supabase db reset`
-3. Check your local credentials with `supabase status` to configure your environment.
-
-**Detailed instructions:** Please check the [Supabase instructions](/supabase/README.md) for full details on how to manage the database and environment variables.
+Please check the [Supabase instructions](/supabase/README.md) for full details on how to manage the database and environment variables.
 
 ### 3. Environment variables
 
-Create a `.env` file in the root directory. Based on your `supabase status` output, it should look like this:
+Create a `.env` file in the root directory. Based on your `npx supabase status` output, it should look like this:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
@@ -89,9 +84,8 @@ We welcome all kinds of contributions! You don't need to be a developer to help 
 
 We value your knowledge and feedback just as much as code. You can help by:
 
-* **Suggesting new apps:** Know an app that should be in our browser? Open an **[Issue](https://github.com/opentea-org/OpenTEA/issues)** using the "App Request" template.
-* **Reporting bugs or ideas:** If you find something broken or have an idea to improve the user experience, please **[open an issue](https://github.com/opentea-org/OpenTEA/issues/new)**. Just explain what you found and how we can make it better!
-* **Proofreading:** Help us verify our translations to ensure they are natural and inclusive.
+* **Suggesting or updating apps:** Do you know an app that should be in our browser, or want to update information for an existing one? Open an **[Issue](https://github.com/opentea-org/OpenTEA/issues/new?template=app_request.md)** using the "App Request" template.
+* **Reporting bugs or ideas:** If you find something broken or have an idea to improve the user experience, please **[open an issue](https://github.com/opentea-org/OpenTEA/issues/new?template=bug_report.md)** using the "Bug Report or Feature Idea" template. Just explain what you found and how we can make it better!
 
 ### If you are a developer
 

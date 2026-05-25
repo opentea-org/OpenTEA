@@ -22,17 +22,17 @@ WITH new_app AS (
     
     -- Consolidated translations inside the JSONB column
     '{
-      "en": {
-        "name": "Proloquo2Go",
-        "short_description": "Symbol-based AAC application available for iOS devices.",
-        "long_description": "Proloquo2Go is a symbol-supported communication app developed for iPad and iPhone. It utilizes the Crescendo vocabulary system, offering customizable grid sizes to accommodate different literacy levels. The application supports text-to-speech with natural-sounding voices, allows for button and folder customization, and operates fully offline without an internet connection."
-      },
-      "es": {
-        "name": "Proloquo2Go",
-        "short_description": "Aplicación de CAA basada en símbolos disponible para dispositivos iOS.",
-        "long_description": "Proloquo2Go es una aplicación de comunicación basada en símbolos desarrollada para iPad y iPhone. Utiliza el sistema de vocabulario Crescendo, ofreciendo tamaños de cuadrícula personalizables para adaptarse a diferentes niveles de lectoescritura. La aplicación soporta texto a voz, permite la personalización de botones y carpetas, y funciona completamente sin conexión a internet."
-      }
-    }'::jsonb,
+          "en": {
+          "name": "Proloquo2Go",
+          "short_description": "An advanced communication app with an organized vocabulary that grows with the user.",
+          "long_description": "Proloquo2Go is a robust tool featuring a pre-arranged vocabulary designed to help users learn to build complete sentences over time. It is highly flexible, allowing families to change the number of buttons on the screen to match a person''s visual, physical, or reading skills without breaking their familiar layout. It reads words out loud using high-quality, natural-sounding voices and operates fully offline."
+        },
+          "es": {
+          "name": "Proloquo2Go",
+          "short_description": "Una aplicación avanzada de comunicación con un vocabulario organizado que crece con el usuario.",
+          "long_description": "Proloquo2Go es una herramienta robusta que incluye un vocabulario preorganizado, diseñado para ayudar a los usuarios a aprender a construir oraciones completas con el tiempo. Es muy flexible, permitiendo cambiar la cantidad de botones en pantalla para adaptarse a las capacidades visuales, físicas o de lectura de la persona sin alterar el orden al que ya se acostumbró. Lee las palabras en voz alta con voces muy naturales y funciona completamente sin internet."
+        }
+      }'::jsonb,
     
     'paid',   -- Reference to public.price_types
     300.00,   -- Price amount in EUR
@@ -71,5 +71,5 @@ insert_platforms AS (
 
 -- 3. Categories  
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['symbol-boards', 'mixed-communication']) 
+SELECT id, unnest(ARRAY['text-to-speech', 'symbol-boards']) 
 FROM new_app;

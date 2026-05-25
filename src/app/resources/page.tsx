@@ -29,14 +29,14 @@ const uiTranslations = {
   en: {
     back: "Back to home",
     title: "Learning resources",
-    subtitle: "A collection of *free resources* we've found helpful for learning more about autism.",
+    subtitle: "*Free resources* we've found helpful for learning more about autism.",
     view: "View Resource",
     by: "By",
   },
   es: {
     back: "Volver al inicio",
     title: "Recursos de aprendizaje",
-    subtitle: "Una colección de *recursos gratuitos* que nos han resultado útiles para aprender más sobre autismo.",
+    subtitle: "*Recursos gratuitos* que nos han resultado útiles para aprender más sobre autismo.",
     view: "Ver recurso",
     by: "Por",
   }
@@ -57,7 +57,7 @@ const resources: Resource[] = [
       en: "A comprehensive MOC designed to teach how to use mobile technology to support autistic people.",
       es: "Un curso online diseñado para enseñar cómo usar la tecnología móvil para apoyar a personas autistas.",
     },
-    link: "https://online.orangedigitalcenter.es/courses/289",
+    link: "https://online.orangedigitalcenter.es/courses/332",
     icon: FaGraduationCap,
     iconColor: "text-orange-500",
     iconBg: "bg-orange-50",

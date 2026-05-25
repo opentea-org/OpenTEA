@@ -21,16 +21,16 @@ WITH new_app AS (
     'mita-math',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "MITA: Math & Logic",
-        "short_description": "Adaptive games for arithmetic, geometry, and logical reasoning.",
-        "long_description": "MITA: Math & Logic is an educational application designed to teach early math concepts and reasoning skills. It covers arithmetic, geometry, and logic through gamified exercises. Like its language counterpart, it uses an adaptive algorithm that adjusts the difficulty of the puzzles based on the user''s accuracy and progress."
+        "short_description": "Interactive games to learn basic math and problem-solving skills.",
+        "long_description": "MITA: Math & Logic is an educational app that helps children learn early math concepts and logical thinking through fun activities. It covers topics like numbers, shapes, and sorting through simple puzzles. Just like the language version of the app, it automatically adjusts the difficulty based on how the child is doing, so it always provides a challenge that is just right for them."
       },
       "es": {
         "name": "MITA: Matemáticas y Lógica",
-        "short_description": "Juegos adaptativos de aritmética, geometría y razonamiento lógico.",
-        "long_description": "MITA: Matemáticas y Lógica es una aplicación educativa diseñada para enseñar conceptos matemáticos tempranos y habilidades de razonamiento. Cubre aritmética, geometría y lógica a través de ejercicios gamificados. Al igual que su versión de lenguaje, utiliza un algoritmo adaptativo que ajusta la dificultad de los puzles basándose en la precisión y el progreso del usuario."
+        "short_description": "Juegos interactivos para aprender matemáticas básicas y a resolver problemas.",
+        "long_description": "MITA: Matemáticas y Lógica es una aplicación educativa que ayuda a los niños a aprender los primeros conceptos matemáticos y a pensar de forma lógica mediante actividades divertidas. Enseña números, formas y a clasificar objetos a través de puzles sencillos. Al igual que la otra versión de la aplicación, cambia automáticamente la dificultad según cómo lo haga el niño, por lo que siempre ofrece un reto que se ajusta perfectamente a su ritmo."
       }
     }'::jsonb,
     

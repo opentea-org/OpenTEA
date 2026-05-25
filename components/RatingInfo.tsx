@@ -10,35 +10,8 @@ import {
   FaRegEye 
 } from "react-icons/fa";
 
-// --- Translations ---
-const translations = {
-  en: {
-    ariaLabel: "How to read ratings",
-    title: "How to read ratings",
-    easeTitle: "Ease of Use",
-    easeDesc: "Higher is better. Indicates an intuitive interface that requires less motor skill.",
-    cogTitle: "Cognitive Load",
-    cogDesc: "Depends on your goal:",
-    cogLow: "Low (1-2): Relaxation",
-    cogHigh: "High (3-5): Learning",
-    sensoryTitle: "Sensory Load",
-    sensoryDesc: "Lower is better for users with sensory sensitivities (fewer flashing lights or sounds).",
-    closeBtn: "Got it"
-  },
-  es: {
-    ariaLabel: "Cómo leer las puntuaciones",
-    title: "Cómo leer las puntuaciones",
-    easeTitle: "Facilidad de uso",
-    easeDesc: "Cuanto más alto, mejor. Indica una interfaz intuitiva que requiere menos habilidad motriz.",
-    cogTitle: "Carga cognitiva",
-    cogDesc: "Depende de tu objetivo:",
-    cogLow: "Baja (1-2): Relax",
-    cogHigh: "Alta (3-5): Aprendizaje",
-    sensoryTitle: "Carga sensorial",
-    sensoryDesc: "Baja es mejor para usuarios con sensibilidad sensorial (menos luces o sonidos intensos).",
-    closeBtn: "Entendido"
-  }
-};
+import { ratingTranslations } from "@/src/lib/ratingTranslations";
+
 
 export function RatingInfo() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +23,7 @@ export function RatingInfo() {
     setLang(currentLang);
   }, [isOpen]);
 
-  const t = translations[lang];
+  const t = ratingTranslations[lang];
 
   // Lock body scroll when modal is open
   useEffect(() => {

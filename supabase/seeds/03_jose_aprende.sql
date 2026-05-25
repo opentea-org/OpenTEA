@@ -22,17 +22,17 @@ WITH new_app AS (
     
     -- Consolidated translations inside the JSONB column
     '{
-      "en": {
-        "name": "José Aprende",
-        "short_description": "Interactive visual stories adapted with pictograms for routines and emotions.",
-        "long_description": "José Aprende is a collection of interactive stories designed for visual learners, covering themes of self-care, routines, and emotions. The application uses pictograms, interactive illustrations, and a read-aloud feature to support language acquisition and autonomy. It features a simplified interface suitable for children with autism and pre-readers."
-      },
-      "es": {
-        "name": "José Aprende",
-        "short_description": "Cuentos visuales interactivos con pictogramas para rutinas y emociones.",
-        "long_description": "José Aprende es una colección de cuentos interactivos diseñados para aprendices visuales, abarcando temas de autocuidado, rutinas y emociones. La aplicación utiliza pictogramas, ilustraciones interactivas y función de lectura automática para apoyar la adquisición del lenguaje y la autonomía. Cuenta con una interfaz simplificada apta para niños con autismo y pre-lectores."
-      }
-    }'::jsonb,
+  "en": {
+    "name": "José Aprende",
+    "short_description": "Interactive stories with pictures that teach daily routines and emotions.",
+    "long_description": "José Aprende is a collection of interactive stories for children who learn best with pictures. It covers everyday topics like personal care, daily habits, and feelings. The app uses simple drawings, animations, and reads the text out loud to help children learn new words and do things by themselves. Its design is very easy to navigate, making it ideal for children with autism and those who do not know how to read yet."
+  },
+  "es": {
+    "name": "José Aprende",
+    "short_description": "Cuentos interactivos con imágenes que enseñan rutinas diarias y emociones.",
+    "long_description": "José Aprende es una colección de cuentos interactivos para niños que aprenden mejor con imágenes. Abarca temas del día a día como el aseo personal, los hábitos y los sentimientos. La aplicación usa dibujos sencillos, animaciones y lee el texto en voz alta para ayudar a los niños a aprender nuevas palabras y hacer cosas por sí mismos. Su diseño es muy fácil de usar, ideal para niños con autismo y aquellos que todavía no saben leer."
+  }
+}'::jsonb,
     
     'free',   -- Reference to public.price_types
     null,     -- Price amount in EUR

@@ -24,13 +24,13 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Día a Día",
-        "short_description": "Visual diary and schedule organizer using pictograms and photos.",
-        "long_description": "Día a Día is a visual diary designed for people with autism and communication difficulties to structure their daily routine. It allows users to record and review daily activities using customized photos, pictograms, and text. The app functions as both an anticipation tool for upcoming events and a communication aid to recount past activities."
+        "short_description": "A visual diary and daily planner that uses photos and pictograms.",
+        "long_description": "Día a Día is a digital diary that helps people with autism or communication challenges organize their day. It lets users save and review their activities using their own photos, pictograms, and text. The app helps users prepare for what is going to happen next and gives them an easy way to show and talk about what they did earlier."
       },
       "es": {
         "name": "Día a Día",
-        "short_description": "Diario visual y organizador de agenda mediante pictogramas y fotos.",
-        "long_description": "Día a Día es un diario visual diseñado para personas con autismo y dificultades de comunicación para estructurar su rutina diaria. Permite registrar y revisar actividades diarias utilizando fotos personalizadas, pictogramas y texto. La aplicación funciona tanto como herramienta de anticipación para eventos futuros como ayuda comunicativa para relatar actividades pasadas."
+        "short_description": "Un diario visual y planificador diario que utiliza fotos y pictogramas.",
+        "long_description": "Día a Día es un diario digital que ayuda a personas con autismo o dificultades para comunicarse a organizar su día. Permite guardar y repasar las actividades usando fotos propias, pictogramas y texto. La aplicación sirve para que los usuarios sepan qué va a pasar después y les ofrece una forma muy fácil de mostrar y contar lo que ya han hecho."
       }
     }'::jsonb,
     

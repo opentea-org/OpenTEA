@@ -21,16 +21,16 @@ WITH new_app AS (
     'asterics-grid',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "AsTeRICS Grid",
-        "short_description": "Free and open-source web-based AAC communicator using ARASAAC pictograms.",
-        "long_description": "AsTeRICS Grid is a cross-platform web application for augmentative communication. It allows the creation of fully customizable communication boards using ARASAAC symbols and supports text-to-speech. While powerful and compatible with various input methods (including eye-tracking), the initial configuration and editing interface have a steep learning curve."
+        "short_description": "A free, customizable communication tool using pictograms to help people speak.",
+        "long_description": "AsTeRICS Grid is a free web tool that helps people communicate by creating personalized boards with pictures. It uses standard ARASAAC symbols and can read text out loud. It is a very powerful and flexible tool that works on many different devices and supports different ways of controlling the screen. Please note that because it is so advanced, it may take a little time to learn how to set it up and customize it exactly as you need."
       },
       "es": {
         "name": "AsTeRICS Grid",
-        "short_description": "Comunicador web de CAA gratuito y de código abierto que utiliza pictogramas de ARASAAC.",
-        "long_description": "AsTeRICS Grid es una aplicación web multiplataforma para la comunicación aumentativa. Permite crear tableros de comunicación totalmente personalizables utilizando símbolos ARASAAC y soporta texto a voz. Aunque es potente y compatible con varios métodos de entrada (incluido el seguimiento ocular), la configuración inicial y la interfaz de edición tienen una curva de aprendizaje alta."
+        "short_description": "Una herramienta de comunicación gratuita y personalizable que usa pictogramas para ayudar a hablar.",
+        "long_description": "AsTeRICS Grid es una herramienta web gratuita que ayuda a las personas a comunicarse creando tableros personalizados con imágenes. Utiliza los símbolos ARASAAC y puede leer el texto en voz alta. Es una herramienta muy potente y flexible que funciona en diferentes dispositivos y permite diversas formas de controlar la pantalla. Ten en cuenta que, al ser tan completa, puede llevar un poco de tiempo aprender a configurarla y personalizarla exactamente como la necesites."
       }
     }'::jsonb,
     

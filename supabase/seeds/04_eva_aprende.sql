@@ -24,13 +24,13 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Eva Aprende",
-        "short_description": "Interactive visual stories adapted with pictograms, featuring a female protagonist.",
-        "long_description": "Eva Aprende is a version of the \"José Aprende\" story collection featuring a female main character. It provides interactive visual stories specifically adapted for girls with autism and other learning difficulties. The app focuses on teaching autonomy, self-care, and emotions through pictograms, easy-to-read text, and audio support, functioning fully offline."
+        "short_description": "Interactive stories with pictures featuring a girl as the main character.",
+        "long_description": "Eva Aprende is a version of the \"José Aprende\" stories starring a girl. It offers digital books with pictures designed specially to help girls with autism or learning challenges. The app uses simple drawings, easy text, and a voice that reads out loud to teach daily habits, personal care, and feelings. It works completely without an internet connection."
       },
       "es": {
         "name": "Eva Aprende",
-        "short_description": "Cuentos visuales interactivos con pictogramas y protagonista femenina.",
-        "long_description": "Eva Aprende es una versión de la colección de cuentos \"José Aprende\" protagonizada por un personaje femenino. Ofrece historias visuales interactivas adaptadas específicamente para niñas con autismo y otras dificultades de aprendizaje. La aplicación se centra en la enseñanza de la autonomía, el autocuidado y las emociones mediante pictogramas, texto de lectura fácil y soporte de audio, funcionando completamente sin conexión."
+        "short_description": "Cuentos interactivos con imágenes que tienen a una niña como protagonista.",
+        "long_description": "Eva Aprende es una versión de los cuentos de \"José Aprende\" protagonizada por una niña. Ofrece libros digitales con imágenes pensados especialmente para ayudar a niñas con autismo o dificultades de aprendizaje. La aplicación usa dibujos sencillos, textos fáciles y una voz que lee en voz alta para enseñar hábitos diarios, aseo personal y sentimientos. Funciona completamente sin conexión a internet."
       }
     }'::jsonb,
     

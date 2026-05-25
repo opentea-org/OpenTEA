@@ -23,7 +23,6 @@ export default async function AppsPage() {
   const cookieVal = cookieStore.get("lang")?.value;
   const lang: Lang = (cookieVal === "en" || cookieVal === "es") ? cookieVal : "es";
 
-  // Get apps
   const apps = await getApps(lang);
   
   // Get UI translations

@@ -21,16 +21,16 @@ WITH new_app AS (
     'mita-lang',
     
     -- Consolidated translations inside the JSONB column
-    '{
+'{
       "en": {
         "name": "MITA: Language Therapy",
-        "short_description": "Adaptive early intervention application for language and cognitive development.",
-        "long_description": "MITA (Mental Imagery Therapy for Autism) is a clinically validated early-intervention application for children with ASD. It utilizes interactive puzzles designed to develop mental imagery and language skills. The app features an adaptive algorithm that adjusts the difficulty level in real-time based on the child''s performance, providing a personalized learning path."
+        "short_description": "An interactive app that helps children learn language and think in images.",
+        "long_description": "MITA is an app designed to help children with autism learn language and communication skills through fun puzzles. It helps children practice visualizing objects and concepts, which is a key part of learning to talk. The app automatically changes the difficulty level based on how the child is playing, so it is always a good challenge that matches their own pace."
       },
       "es": {
         "name": "MITA: Terapia del Lenguaje y Cognitiva",
-        "short_description": "Aplicación de atención temprana adaptativa para el desarrollo del lenguaje y cognitivo.",
-        "long_description": "MITA (Terapia de Imagen Mental para el Autismo) es una aplicación de atención temprana validada clínicamente para niños con TEA. Utiliza puzles interactivos diseñados para desarrollar la imaginación mental y las habilidades lingüísticas. La app cuenta con un algoritmo adaptativo que ajusta el nivel de dificultad en tiempo real según el rendimiento del niño, ofreciendo una ruta de aprendizaje personalizada."
+        "short_description": "Una aplicación interactiva que ayuda a los niños a aprender el lenguaje y a pensar con imágenes.",
+        "long_description": "MITA es una aplicación diseñada para ayudar a niños con autismo a aprender habilidades lingüísticas y de comunicación a través de divertidos puzles. Ayuda a los niños a practicar cómo imaginar objetos y conceptos, algo fundamental para aprender a hablar. La aplicación cambia automáticamente el nivel de dificultad según cómo juegue el niño, para que el reto sea siempre el adecuado y vaya a su propio ritmo."
       }
     }'::jsonb,
     

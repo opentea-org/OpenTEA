@@ -24,13 +24,13 @@ WITH new_app AS (
     '{
       "en": {
         "name": "Proloquo",
-        "short_description": "AAC app designed for literacy and ease of use.",
-        "long_description": "Proloquo is a subscription-based AAC application for iOS designed to build language skills alongside literacy. It utilizes the \"Crescendo Evolution\" vocabulary system, which reduces the need for customization by offering a logically organized layout. It features cloud synchronization across devices and allows free access for families and educators to support the user."
+        "short_description": "An app that helps users develop language and reading skills in an easy way.",
+        "long_description": "Proloquo is a tool designed to help people build their language and reading skills. It comes with a pre-organized vocabulary, which means families do not have to spend a lot of time setting up everything from scratch. It stays updated across different devices and allows families and teachers to easily join in and support the user in their daily communication."
       },
       "es": {
         "name": "Proloquo",
-        "short_description": "App de CAA diseñada para la alfabetización y facilidad de uso.",
-        "long_description": "Proloquo es una aplicación de CAA por suscripción para iOS diseñada para desarrollar habilidades lingüísticas junto con la lectoescritura. Utiliza el sistema de vocabulario \"Crescendo Evolution\", que reduce la necesidad de personalización ofreciendo una distribución organizada lógicamente. Cuenta con sincronización en la nube entre dispositivos y permite acceso gratuito a familias y educadores para apoyar al usuario."
+        "short_description": "Una aplicación que ayuda a desarrollar el lenguaje y la lectura de forma sencilla.",
+        "long_description": "Proloquo es una herramienta diseñada para ayudar a las personas a desarrollar sus habilidades lingüísticas y de lectura. Incluye un vocabulario organizado previamente, lo que significa que las familias no necesitan dedicar mucho tiempo a configurar todo desde cero. Se mantiene actualizada en diferentes dispositivos y permite que tanto familias como educadores se sumen fácilmente para apoyar al usuario en su comunicación diaria."
       }
     }'::jsonb,
     
@@ -71,5 +71,5 @@ insert_platforms AS (
 
 -- 3. Categories 
 INSERT INTO public.app_categories (app_id, category_id)
-SELECT id, unnest(ARRAY['mixed-communication']) 
+SELECT id, unnest(ARRAY['text-to-speech', 'symbol-boards']) 
 FROM new_app;

@@ -23,7 +23,6 @@ const text = {
 };
 
 export default function Hero({ lang = "es" }: { lang?: string }) {
-  // Select the correct language object based on the prop
   const content = text[lang as keyof typeof text] || text.es;
   const title = highlightEmphasis(content.title);
 
@@ -59,7 +58,7 @@ export default function Hero({ lang = "es" }: { lang?: string }) {
               </Link>
 
               <Link
-                href="/about"
+                href="#criterios-evaluacion"
                 className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border border-brandGrayLight bg-white/80 px-6 py-3 text-sm font-medium text-brandGrayDark hover:bg-brandGray/30 transition shadow-sm"
               >
                 {content.ctaSecondary}
