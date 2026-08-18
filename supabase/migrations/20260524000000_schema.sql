@@ -105,3 +105,12 @@ create policy "Public read apps" on public.apps for select using (true);
 create policy "Public read app_categories" on public.app_categories for select using (true);
 create policy "Public read app_platforms" on public.app_platforms for select using (true);
 create policy "Public read app_languages" on public.app_languages for select using (true);
+
+grant select on public.categories to anon;
+grant select on public.platforms to anon;
+grant select on public.price_types to anon;
+grant select on public.languages to anon;
+grant select on public.apps to anon;
+grant select on public.app_categories to anon;
+grant select on public.app_platforms to anon;
+grant select on public.app_languages to anon;
