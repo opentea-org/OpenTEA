@@ -84,15 +84,26 @@ export function AppCard({ app, lang = "en" }: AppCardProps) {
     ? "bg-green-50 text-green-700 border-green-200 ring-green-600/10" 
     : "bg-amber-50 text-amber-800 border-amber-200 ring-amber-600/10";
 
-  const renderRating = (score: number | null) => (
-    <div className="flex gap-1">
-      {[1, 2, 3, 4, 5].map((index) => (
-        <span key={index}>
-          {score && index <= score ? <FaCircle className="text-brandBlue w-3 h-3" /> : <FaRegCircle className="text-gray-300 w-3 h-3" />}
-        </span>
-      ))}
-    </div>
-  );
+  const renderRating = (score: number | null) => {
+    const rating = score || 0;
+
+    return (
+      <div
+        className="flex gap-1"
+        aria-label={`${t.easeOfUse}: ${rating}/5`}
+      >
+        {[1, 2, 3, 4, 5].map((index) => (
+          <span key={index} aria-hidden="true">
+            {index <= rating ? (
+              <FaCircle className="text-brandBlue w-3 h-3" />
+            ) : (
+              <FaRegCircle className="text-gray-300 w-3 h-3" />
+            )}
+          </span>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="group relative flex flex-col justify-between h-full rounded-2xl border border-brandGray bg-white p-5 shadow-sm transition-all hover:shadow-lg hover:-translate-y-1">
