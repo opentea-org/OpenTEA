@@ -1,4 +1,4 @@
-![Next.js](https://img.shields.io/badge/Next.js-16.2-black) ![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green) ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)  ![License](https://img.shields.io/badge/License-MIT-yellow) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=flat&logo=ko-fi&logoColor=white)](https://ko-fi.com/opentea)
+![Next.js](https://img.shields.io/badge/Next.js-16.4-black) ![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-green) ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)  ![License](https://img.shields.io/badge/License-MIT-yellow) [![Ko-Fi](https://img.shields.io/badge/Ko--fi-F16061?style=flat&logo=ko-fi&logoColor=white)](https://ko-fi.com/opentea)
 
 # 🐿️ OpenTEA
 
