@@ -73,35 +73,36 @@ function CategoryRow({ apps, lang, category }: CategoryRowProps) {
 
   return (
     <section className={`${visual.bgClass} border-b border-brandGrayLight/60 py-12 lg:py-16`}>
-      <div className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row gap-8 lg:gap-12 items-stretch">
+      <div className="max-w-6xl mx-auto px-6 space-y-8">
 
-        <div className="lg:w-1/3 space-y-5 flex flex-col justify-center shrink-0">
-          <div className="flex items-center gap-4">
-            {Icon && (
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm shrink-0">
-                <FontAwesomeIcon icon={Icon} className={`${visual.iconClass} text-xl`} />
-              </span>
-            )}
-            <h2 className="text-2xl font-bold text-brandGrayDark">
-              {title}
-            </h2>
+        {/* Category header on top, full width, so the cards below get the whole row */}
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+          <div className="space-y-3 max-w-2xl">
+            <div className="flex items-center gap-4">
+              {Icon && (
+                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm shrink-0">
+                  <FontAwesomeIcon icon={Icon} className={`${visual.iconClass} text-xl`} aria-hidden="true" />
+                </span>
+              )}
+              <h2 className="text-2xl font-bold text-brandGrayDark">
+                {title}
+              </h2>
+            </div>
+
+            <p className="text-lg text-gray-700 leading-relaxed">
+              {description}
+            </p>
           </div>
 
-          <p className="text-base text-gray-600 leading-relaxed">
-            {description}
-          </p>
-
-          <div className="pt-2">
-            <Link
-              href={`/apps?category=${category}`}
-              className="inline-flex items-center justify-center rounded-full bg-brandBlue px-6 py-2.5 text-sm font-semibold text-white hover:bg-brandBlue/90 transition-all shadow-sm"
-            >
-              {buttonLabel}
-            </Link>
-          </div>
+          <Link
+            href={`/apps?category=${category}`}
+            className="inline-flex shrink-0 items-center justify-center self-start md:self-auto rounded-full bg-brandBlue px-6 py-3 text-base font-bold text-white hover:bg-brandBlue/90 transition-colors"
+          >
+            {buttonLabel}
+          </Link>
         </div>
 
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {topApps.map((app) => (
             <AppCard key={app.id} app={app} lang={lang} />
           ))}

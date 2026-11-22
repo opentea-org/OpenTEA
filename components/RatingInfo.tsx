@@ -25,15 +25,17 @@ export function RatingInfo() {
 
   const t = ratingTranslations[lang];
 
-  // Lock body scroll when modal is open
+  // Lock body scroll while the dialog is open, and close it with the Escape key
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
+    if (!isOpen) return;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = "unset";
+      document.removeEventListener("keydown", onKey);
     };
   }, [isOpen]);
 
@@ -42,11 +44,11 @@ export function RatingInfo() {
       {/* Trigger Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="ml-2 text-brandBlue hover:text-brandBlue/80 transition-colors focus:outline-none"
+        className="ml-2 text-brandBlue hover:text-brandBlue/80 transition-colors"
         aria-label={t.ariaLabel}
         type="button"
       >
-        <FaInfoCircle className="w-4 h-4" />
+        <FaInfoCircle className="w-5 h-5" aria-hidden="true" />
       </button>
 
       {/* Modal Overlay */}
@@ -60,18 +62,19 @@ export function RatingInfo() {
           />
 
           {/* Modal Card */}
-          <div className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl p-6 animate-in fade-in zoom-in-95 duration-200">
+          <div role="dialog" aria-modal="true" aria-labelledby="rating-info-title" className="relative w-full max-w-md max-h-[90vh] overflow-y-auto bg-white rounded-3xl shadow-2xl p-6">
             
             {/* Close Button Icon */}
             <button
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors rounded-full hover:bg-gray-100"
+              className="absolute top-4 right-4 p-2 text-gray-700 hover:text-gray-900 transition-colors rounded-full hover:bg-gray-100"
+              aria-label={t.closeBtn}
             >
               <FaTimes className="w-4 h-4" />
             </button>
 
             {/* Header */}
-            <h3 className="text-xl font-bold text-brandGrayDark mb-6 pr-8">
+            <h3 id="rating-info-title" className="text-xl font-bold text-brandGrayDark mb-6 pr-8">
               {t.title}
             </h3>
 
@@ -86,9 +89,9 @@ export function RatingInfo() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <FaRegSmile className="text-brandBlue w-4 h-4" />
-                    <h4 className="text-sm font-bold text-brandGrayDark">{t.easeTitle}</h4>
+                    <h4 className="text-base font-bold text-brandGrayDark">{t.easeTitle}</h4>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-base text-gray-700 leading-relaxed">
                     {t.easeDesc}
                   </p>
                 </div>
@@ -97,15 +100,15 @@ export function RatingInfo() {
               {/* Cognitive Load */}
               <li className="flex gap-3">
                 <div className="flex flex-col items-center gap-2 shrink-0 w-6">
-                    <div className="w-1.5 h-full bg-purple-400 rounded-full" />
+                    <div className="w-1.5 h-full bg-purple-700 rounded-full" />
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <FaBrain className="text-purple-400 w-4 h-4" />
-                    <h4 className="text-sm font-bold text-brandGrayDark">{t.cogTitle}</h4>
+                    <FaBrain className="text-purple-700 w-4 h-4" />
+                    <h4 className="text-base font-bold text-brandGrayDark">{t.cogTitle}</h4>
                   </div>
-                  <p className="text-sm text-gray-600 mb-2">{t.cogDesc}</p>
-                  <div className="flex gap-2 text-xs">
+                  <p className="text-base text-gray-700 mb-2">{t.cogDesc}</p>
+                  <div className="flex flex-col gap-2 text-base">
                     <span className="bg-purple-50 text-purple-700 px-2 py-1.5 rounded-lg font-medium border border-purple-100 text-center">
                       {t.cogLow}
                     </span>
@@ -124,9 +127,9 @@ export function RatingInfo() {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <FaRegEye className="text-teal-600 w-4 h-4" />
-                    <h4 className="text-sm font-bold text-brandGrayDark">{t.sensoryTitle}</h4>
+                    <h4 className="text-base font-bold text-brandGrayDark">{t.sensoryTitle}</h4>
                   </div>
-                  <p className="text-sm text-gray-600 leading-relaxed">
+                  <p className="text-base text-gray-700 leading-relaxed">
                     {t.sensoryDesc}
                   </p>
                 </div>

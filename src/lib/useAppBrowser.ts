@@ -7,28 +7,35 @@ export const tBrowser = {
   en: {
     filters: "Filters",
     active: "Active",
-    removeAll: "Remove all",
-    priceRange: "PRICE RANGE",
+    removeAll: "Clear all filters",
+    priceRange: "Price",
     clear: "Clear",
     allPrices: "All prices",
-    free: "FREE",
-    paid: "PAID / SUBSCRIPTION",
-    category: "CATEGORY",
+    free: "Free",
+    paid: "Paid or subscription",
+    category: "Category",
     all: "All",
-    platform: "PLATFORM",
-    language: "LANGUAGE",
-    accessibility: "ACCESSIBILITY",
-    minEase: "Min. Ease of Use",
-    maxCog: "Max. Cognitive Load",
-    maxSens: "Max. Sensory Load",
-    showResults: "Show Results",
-    searchPlaceholder: "Search apps by name…",
+    platform: "Device",
+    language: "Language",
+    accessibility: "Accessibility",
+    minEase: "Ease of use",
+    maxCog: "Cognitive load",
+    maxSens: "Sensory load",
+    easeHint: "Choose the minimum. Higher is better.",
+    cogHint: "Choose the maximum. Low to relax, high to learn.",
+    sensHint: "Choose the maximum. Lower is better.",
+    orMore: "or more",
+    orLess: "or less",
+    showResults: "Show results",
+    searchLabel: "Search apps",
+    searchPlaceholder: "Search by name or description",
     appsCount: "apps",
     appCount: "app",
-    sortName: "Name (A-Z)",
-    sortEase: "Ease of Use (High-Low)",
-    sortCog: "Cognitive Load (High-Low)",
-    sortSens: "Sensory Load (High-Low)",
+    sortLabel: "Sort by",
+    sortName: "Name, from A to Z",
+    sortEase: "Ease of use, from high to low",
+    sortCog: "Cognitive load, from high to low",
+    sortSens: "Sensory load, from high to low",
     prev: "Previous",
     next: "Next",
     page: "Page",
@@ -37,28 +44,35 @@ export const tBrowser = {
   es: {
     filters: "Filtros",
     active: "Activos",
-    removeAll: "Borrar todo",
-    priceRange: "RANGO DE PRECIO",
-    clear: "Limpiar",
+    removeAll: "Borrar todos los filtros",
+    priceRange: "Precio",
+    clear: "Borrar",
     allPrices: "Todos los precios",
-    free: "GRATIS",
-    paid: "DE PAGO / SUSCRIPCIÓN",
-    category: "CATEGORÍA",
+    free: "Gratis",
+    paid: "De pago o suscripción",
+    category: "Categoría",
     all: "Todas",
-    platform: "PLATAFORMA",
-    language: "IDIOMA",
-    accessibility: "ACCESIBILIDAD",
-    minEase: "Mín. Facilidad de uso",
-    maxCog: "Máx. Carga cognitiva",
-    maxSens: "Máx. Carga sensorial",
-    showResults: "Mostrar resultados",
-    searchPlaceholder: "Buscar apps por nombre…",
+    platform: "Dispositivo",
+    language: "Idioma",
+    accessibility: "Accesibilidad",
+    minEase: "Facilidad de uso",
+    maxCog: "Carga cognitiva",
+    maxSens: "Carga sensorial",
+    easeHint: "Elige el mínimo. Mejor si es alta.",
+    cogHint: "Elige el máximo. Baja para relajarse, alta para aprender.",
+    sensHint: "Elige el máximo. Mejor si es baja.",
+    orMore: "o más",
+    orLess: "o menos",
+    showResults: "Ver resultados",
+    searchLabel: "Buscar apps",
+    searchPlaceholder: "Busca por nombre o descripción",
     appsCount: "apps",
     appCount: "app",
-    sortName: "Nombre (A-Z)",
-    sortEase: "Facilidad (Alta-Baja)",
-    sortCog: "Carga Cognitiva (Alta-Baja)",
-    sortSens: "Carga Sensorial (Alta-Baja)",
+    sortLabel: "Ordenar por",
+    sortName: "Nombre, de la A a la Z",
+    sortEase: "Facilidad de uso, de alta a baja",
+    sortCog: "Carga cognitiva, de alta a baja",
+    sortSens: "Carga sensorial, de alta a baja",
     prev: "Anterior",
     next: "Siguiente",
     page: "Página",
@@ -89,10 +103,17 @@ export function getPrice(app: any) {
   return isFree(app) ? 0 : 0;
 }
 
+/** Lowercase and remove accents, so a search ignores them. */
+export function normalizeText(text: string): string {
+  return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
 export function getLanguageName(code: string, locale: string): string {
   try {
     const displayNames = new Intl.DisplayNames([locale], { type: 'language' });
-    return displayNames.of(code) || code.toUpperCase();
+    const name = displayNames.of(code) || code.toUpperCase();
+    // Capital first letter, like the category names ("Inglés", not "inglés")
+    return name.charAt(0).toLocaleUpperCase(locale) + name.slice(1);
   } catch (e) {
     return code.toUpperCase();
   }
@@ -198,7 +219,7 @@ export function useAppsBrowser(apps: any[], lang: "en" | "es") {
       }
     ) => {
       if (filters.search) {
-        const haystack = `${app.name ?? ""} ${app.short_description ?? ""}`.toLowerCase();
+        const haystack = normalizeText(`${app.name ?? ""} ${app.short_description ?? ""}`);
         if (!haystack.includes(filters.search)) return false;
       }
 
@@ -247,7 +268,7 @@ export function useAppsBrowser(apps: any[], lang: "en" | "es") {
   );
 
   const filteredApps = useMemo(() => {
-    const q = search.trim().toLowerCase();
+    const q = normalizeText(search.trim());
 
     const result = apps.filter((app) =>
       checkCriteria(app, {
@@ -307,7 +328,7 @@ export function useAppsBrowser(apps: any[], lang: "en" | "es") {
     languageCounts: Map<string, number>;
     priceTypeCounts: { all: number; free: number; paid: number };
   }>(() => {
-    const q = search.trim().toLowerCase();
+    const q = normalizeText(search.trim());
     const baseFilters = {
       search: q, category: selectedCategory || undefined, platforms: selectedPlatforms,
       language: selectedLanguage || undefined, pFilter: priceFilter, pMin: priceMin,

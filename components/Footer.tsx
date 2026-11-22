@@ -1,4 +1,6 @@
 "use client";
+import { NewTabHint } from "@/src/lib/newTab";
+import { BrandName } from "./BrandName";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +15,7 @@ const translations = {
   en: {
     apps: "Apps",
     resources: "Resources",
-    about: "About",
+    about: "About us",
     menu: "Menu",
     contact: "Contact",
     source: "Source",
@@ -24,7 +26,7 @@ const translations = {
   es: {
     apps: "Apps",
     resources: "Recursos",
-    about: "Acerca",
+    about: "Quiénes somos",
     menu: "Menú",
     contact: "Contacto",
     source: "Código",
@@ -64,14 +66,14 @@ export function Footer({ lang = "es" }: { lang?: "en" | "es" }) {
                 <div className="absolute -inset-2 bg-brandBlue/5 rounded-full blur-lg group-hover:bg-brandBlue/10 transition-all opacity-0 group-hover:opacity-100 duration-500" />
                 <Image
                   src="/ardilla2.png"
-                  alt="OpenTEA mascot"
+                  alt=""
                   width={80}
                   height={80}
-                  className="relative opacity-90 group-hover:opacity-100 transition-all transform group-hover:-translate-y-1"
+                  className="relative opacity-90 group-hover:opacity-100 transition-all"
                 />
               </div>
-              <div className="text-sm leading-relaxed text-brandGrayDark/70">
-                <p>OpenTEA</p>
+              <div className="text-sm leading-relaxed text-gray-700">
+                <p className="font-bold text-brandGrayDark"><BrandName /></p>
                 <p>{content.builtWith}</p>
               </div>
             </div>
@@ -82,34 +84,40 @@ export function Footer({ lang = "es" }: { lang?: "en" | "es" }) {
                 href={`${CONTACT_LINK.GITHUB}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white border border-gray-200 rounded-full text-gray-400 hover:text-brandBlue hover:border-brandBlue/60 hover:shadow-sm transition-all"
+                className="p-3 bg-white border border-gray-200 rounded-full text-gray-600 hover:text-brandBlue hover:border-brandBlue/60 hover:shadow-sm transition-all"
               >
-                <FaGithub size={20} />
+                <FaGithub size={20} aria-hidden="true" />
+                <span className="sr-only">GitHub</span>
+                <NewTabHint lang={lang} />
               </Link>
 
               <Link
                 href={`${CONTACT_LINK.LINKEDIN}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white border border-gray-200 rounded-full text-gray-400 hover:text-brandBlue hover:border-brandBlue/60 hover:shadow-sm transition-all"
+                className="p-3 bg-white border border-gray-200 rounded-full text-gray-600 hover:text-brandBlue hover:border-brandBlue/60 hover:shadow-sm transition-all"
               >
-                <FaLinkedinIn size={20} />
+                <FaLinkedinIn size={20} aria-hidden="true" />
+                <span className="sr-only">LinkedIn</span>
+                <NewTabHint lang={lang} />
               </Link>
 
               <Link
                 href={`${CONTACT_LINK.KOFI}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-white border border-gray-200 rounded-full text-gray-400 hover:text-rose-400 hover:border-rose-200 hover:shadow-sm transition-all"
+                className="p-3 bg-white border border-gray-200 rounded-full text-gray-600 hover:text-rose-400 hover:border-rose-200 hover:shadow-sm transition-all"
               >
-                <SiKofi size={20} />
+                <SiKofi size={20} aria-hidden="true" />
+                <span className="sr-only">Ko-fi</span>
+                <NewTabHint lang={lang} />
               </Link>
             </div>
           </div>
 
-          {/* Column 2: Menu */}
-          <div>
-            <h4 className="text-brandBlue font-bold mb-4 uppercase tracking-wider text-xs">
+          {/* Column 2: Menu (centred on mobile, like the brand column) */}
+          <div className="text-center md:text-left">
+            <h4 className="text-brandGrayDark font-bold mb-4 text-base">
               {content.menu}
             </h4>
             <ul className="space-y-3">
@@ -117,7 +125,7 @@ export function Footer({ lang = "es" }: { lang?: "en" | "es" }) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-500 hover:text-brandBlue transition-colors text-sm font-medium"
+                    className="text-brandGrayDark underline underline-offset-2 hover:text-brandBlue transition-colors text-base font-medium"
                   >
                     {link.label}
                   </Link>
@@ -126,13 +134,13 @@ export function Footer({ lang = "es" }: { lang?: "en" | "es" }) {
             </ul>
           </div>
 
-          {/* Column 3: Contact */}
-          <div>
-            <h4 className="text-brandBlue font-bold mb-4 uppercase tracking-wider text-xs">
+          {/* Column 3: Contact (centred on mobile, like the brand column) */}
+          <div className="text-center md:text-left">
+            <h4 className="text-brandGrayDark font-bold mb-4 text-base">
               {content.contact}
             </h4>
             <div
-              className="flex items-center gap-2 text-gray-500 text-sm font-medium"
+              className="flex flex-wrap items-center justify-center md:justify-start gap-2 text-gray-700 text-sm font-medium"
             >
               <FaEnvelope className="text-brandBlue/60" />
               {content.emailText}:
@@ -150,7 +158,7 @@ export function Footer({ lang = "es" }: { lang?: "en" | "es" }) {
 
         {/* --- Collaborators Row --- */}
         {/* <div className="border-t border-gray-100 py-10">
-          <p className="text-center text-[10px] uppercase tracking-[0.2em] text-gray-400 mb-6 font-semibold">
+          <p className="text-center text-sm tracking-[0.2em] text-gray-700 mb-6 font-semibold">
             {content.collaborators}
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
@@ -176,7 +184,7 @@ export function Footer({ lang = "es" }: { lang?: "en" | "es" }) {
 
         {/* --- Bottom Bar --- */}
         <div className="pt-8 border-t border-gray-50 text-center">
-          <p className="text-[11px] font-medium text-brandGrayDark/40 uppercase tracking-widest">
+          <p className="text-sm font-medium text-gray-700 tracking-widest">
             © {new Date().getFullYear()} OpenTEA
           </p>
         </div>

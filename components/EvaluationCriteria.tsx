@@ -19,7 +19,7 @@ export function EvaluationCriteria({ lang }: EvaluationCriteriaProps) {
           <h2 className="text-3xl md:text-3xl font-bold text-brandGrayDark mb-4">
             {t.title}
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-700 leading-relaxed">
             {t.subtitle}
           </p>
         </div>
@@ -33,26 +33,26 @@ export function EvaluationCriteria({ lang }: EvaluationCriteriaProps) {
             <h3 className="text-xl font-bold text-brandGrayDark mb-3">
               {t.easeTitle}
             </h3>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-base text-gray-700 leading-relaxed">
               {t.easeDesc}
             </p>
           </div>
 
           <div className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex flex-col items-center text-center">
             <div className="w-16 h-16 rounded-2xl bg-purple-100 flex items-center justify-center mb-6">
-              <FaBrain className="w-8 h-8 text-purple-500" />
+              <FaBrain className="w-8 h-8 text-purple-600" />
             </div>
             <h3 className="text-xl font-bold text-brandGrayDark mb-3">
               {t.cogTitle}
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-base text-gray-700 leading-relaxed mb-6">
               {t.cogDesc}
             </p>
-            <div className="flex flex-row justify-center gap-2 w-full mt-auto">
-              <span className="flex-1 bg-purple-50 text-purple-700 px-2 py-2.5 rounded-xl text-[13px] font-medium border border-purple-100 flex items-center justify-center text-center leading-tight">
+            <div className="flex flex-col gap-2 w-full mt-auto">
+              <span className="flex-1 bg-purple-50 text-purple-700 px-2 py-2.5 rounded-xl text-sm font-medium border border-purple-100 flex items-center justify-center text-center leading-tight">
                 {t.cogLow}
               </span>
-              <span className="flex-1 bg-purple-50 text-purple-700 px-2 py-2.5 rounded-xl text-[13px] font-medium border border-purple-100 flex items-center justify-center text-center leading-tight">
+              <span className="flex-1 bg-purple-50 text-purple-700 px-2 py-2.5 rounded-xl text-sm font-medium border border-purple-100 flex items-center justify-center text-center leading-tight">
                 {t.cogHigh}
               </span>
             </div>
@@ -65,7 +65,7 @@ export function EvaluationCriteria({ lang }: EvaluationCriteriaProps) {
             <h3 className="text-xl font-bold text-brandGrayDark mb-3">
               {t.sensoryTitle}
             </h3>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-base text-gray-700 leading-relaxed">
               {t.sensoryDesc}
             </p>
           </div>

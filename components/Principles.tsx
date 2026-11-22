@@ -7,30 +7,30 @@ import { faEye, faUniversalAccess, faShieldHalved } from "@fortawesome/free-soli
 const translations = {
   en: {
     clarity: {
-      title: "Clarity above all",
-      text: "We rate every app on Ease of Use so you can find tools that are intuitive and frustration-free",
+      title: "Easy to understand",
+      text: "We rate how easy each app is to use. This helps you find simple apps.",
     },
     accessibility: {
-      title: "Neurodivergent focus",
-      text: "Specific ratings for Cognitive Load and Sensory Impact to ensure the app fits your specific needs",
+      title: "Made for neurodivergent people",
+      text: "We rate the cognitive load and the sensory load. This helps you know if an app is right for you.",
     },
     trust: {
-      title: "Complete & Honest",
-      text: "A comprehensive directory of both free and paid apps, evaluated with transparent criteria for the ASD community",
+      title: "Complete and honest",
+      text: "We include free apps and paid apps. We always explain how we rate them.",
     },
   },
   es: {
     clarity: {
-      title: "Claridad ante todo",
-      text: "Valoramos cada app por su Facilidad de Uso para que encuentres herramientas intuitivas y sin frustraciones",
+      title: "Fácil de entender",
+      text: "Valoramos lo fácil que es usar cada app. Así encuentras apps sencillas.",
     },
     accessibility: {
-      title: "Enfoque neurodivergente",
-      text: "Calificaciones específicas de Carga Cognitiva e Impacto Sensorial para asegurar que la app se ajuste a tus necesidades",
+      title: "Pensado para personas neurodivergentes",
+      text: "Valoramos la carga cognitiva y la carga sensorial. Así sabes si una app es adecuada para ti.",
     },
     trust: {
       title: "Completo y honesto",
-      text: "Un directorio integral de apps gratuitas y de pago, evaluadas con criterios transparentes para la comunidad TEA",
+      text: "Incluimos apps gratis y apps de pago. Siempre explicamos cómo las valoramos.",
     },
   },
 };
@@ -46,7 +46,7 @@ export default function Principles({ lang = "es" }: { lang?: string }) {
         <h3 className="text-2xl font-semibold text-brandGrayDark">
           {content.clarity.title}
         </h3>
-        <p className="text-brandGrayDark/80 text-lg">
+        <p className="text-base text-gray-700 leading-relaxed">
           {content.clarity.text}
         </p>
       </div>
@@ -57,7 +57,7 @@ export default function Principles({ lang = "es" }: { lang?: string }) {
         <h3 className="text-2xl font-semibold text-brandGrayDark">
           {content.accessibility.title}
         </h3>
-        <p className="text-brandGrayDark/80 text-lg">
+        <p className="text-base text-gray-700 leading-relaxed">
           {content.accessibility.text}
         </p>
       </div>
@@ -68,7 +68,7 @@ export default function Principles({ lang = "es" }: { lang?: string }) {
         <h3 className="text-2xl font-semibold text-brandGrayDark">
           {content.trust.title}
         </h3>
-        <p className="text-brandGrayDark/80 text-lg">
+        <p className="text-base text-gray-700 leading-relaxed">
           {content.trust.text}
         </p>
       </div>

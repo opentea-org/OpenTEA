@@ -1,64 +1,64 @@
 "use client";
 
 import { FaGithub, FaEnvelope } from "react-icons/fa";
-
 import { CONTACT_LINK } from "@/data/contact-info";
+import { NewTabHint } from "@/src/lib/newTab";
 
+// Plain language: short sentences, no jargon ("issue").
 const text = {
   en: {
-    title: "Do you have any suggestions about this application?",
-    description: "If you disagree with the given evaluation, the description, or any other aspect described about the application, please send us your suggestion.",
-    githubIssue: "Add an issue on GitHub",
-    emailSuggestion: "Email us your suggestion"
+    title: "Is something not right?",
+    description: "Do you disagree with the rating? Is there a mistake in the information about this app? Tell us.",
+    email: "Send us an email",
+    github: "Write on GitHub",
+    githubNote: "You need a GitHub account.",
   },
   es: {
-    title: "¿Tienes alguna sugerencia sobre esta aplicación?",
-    description: "Si no estás de acuerdo con la evaluación dada, la descripción u otro aspecto descrito de la aplicación, por favor, envíanos tu sugerencia.",
-    githubIssue: "Añadir un issue en GitHub",
-    emailSuggestion: "Enviar tu sugerencia por email"
-  }
+    title: "¿Ves algo que no es correcto?",
+    description: "¿No estás de acuerdo con la valoración? ¿Hay un error en la información de esta app? Cuéntanoslo.",
+    email: "Enviar un correo",
+    github: "Escribir en GitHub",
+    githubNote: "Necesitas una cuenta de GitHub.",
+  },
 };
 
+const optionClass =
+  "flex-1 flex items-center gap-4 p-4 rounded-2xl border-2 border-gray-300 bg-white text-brandGrayDark hover:border-brandBlue transition-colors group";
+const iconBoxClass =
+  "p-3 bg-brandGrayLight rounded-xl text-gray-700 group-hover:text-brandBlue transition-colors";
+
 export default function AppSuggestions({ lang = "es" }: { lang?: "en" | "es" }) {
-  const content = text[lang];
+  const content = text[lang] || text.es;
 
   return (
-    <section className="bg-white rounded-3xl border border-brandGray p-6 md:p-8 shadow-sm">
-      <h3 className="text-xl font-bold text-brandGrayDark mb-3 text-center sm:text-left">
-        {content.title}
-      </h3>
+    <section className="bg-white rounded-3xl border-2 border-brandGray p-6 md:p-8">
+      <h2 className="text-xl font-bold text-brandGrayDark mb-3">{content.title}</h2>
 
-      <p className="text-base text-brandGrayDark/80 mb-6 leading-relaxed text-center sm:text-left">
-        {content.description}
-      </p>
-      
+      <p className="text-base text-gray-700 mb-6 leading-relaxed">{content.description}</p>
+
       <div className="flex flex-col sm:flex-row gap-4">
-        {/* GitHub CTA */}
+        {/* Email first: it does not need an account */}
+        <a href={`mailto:${CONTACT_LINK.EMAIL}`} className={optionClass}>
+          <span className={iconBoxClass}>
+            <FaEnvelope className="text-xl" aria-hidden="true" />
+          </span>
+          <span className="text-base font-bold group-hover:text-brandBlue transition-colors">{content.email}</span>
+        </a>
+
         <a
           href={`${CONTACT_LINK.GITHUB}/issues/new`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center gap-4 p-4 rounded-2xl border border-gray-200 bg-gray-50/30 text-brandGrayDark font-medium hover:bg-brandGreen/5 hover:border-brandGreen/30 hover:shadow-sm transition-all group"
+          className={optionClass}
         >
-          <div className="p-3 bg-white rounded-xl shadow-sm border border-gray-100 group-hover:border-brandGreen/20 transition-colors">
-            <FaGithub className="text-xl text-gray-400 group-hover:text-brandGreen transition-colors" />
-          </div>
-          <span className="group-hover:text-brandGreen transition-colors">
-            {content.githubIssue}
+          <span className={iconBoxClass}>
+            <FaGithub className="text-xl" aria-hidden="true" />
           </span>
-        </a>
-
-        {/* Email CTA */}
-        <a
-          href={`mailto:${CONTACT_LINK.EMAIL}`}
-          className="flex-1 flex items-center gap-4 p-4 rounded-2xl border border-gray-200 bg-gray-50/30 text-brandGrayDark font-medium hover:bg-brandBlue/5 hover:border-brandBlue/30 hover:shadow-sm transition-all group"
-        >
-          <div className="p-3 bg-white rounded-xl shadow-sm border border-gray-100 group-hover:border-brandBlue/20 transition-colors">
-            <FaEnvelope className="text-xl text-gray-400 group-hover:text-brandBlue transition-colors" />
-          </div>
-          <span className="group-hover:text-brandBlue transition-colors">
-            {content.emailSuggestion}
+          <span className="flex flex-col">
+            <span className="text-base font-bold group-hover:text-brandBlue transition-colors">{content.github}</span>
+            <span className="text-sm text-gray-700">{content.githubNote}</span>
           </span>
+          <NewTabHint lang={lang} />
         </a>
       </div>
     </section>

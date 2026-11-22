@@ -25,10 +25,10 @@ export function AppsGrid({ apps, lang }: AppsGridProps) {
   if (!apps.length) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center rounded-2xl border-2 border-dashed border-brandGray/40 bg-brandGrayLight/40">
-        <p className="text-brandGrayDark/70 font-medium">
+        <p className="text-gray-700 font-medium">
            {t.noMatch}
         </p>
-        <p className="text-sm text-brandGrayDark/50 mt-1">
+        <p className="text-sm text-gray-700 mt-1">
            {t.tryAdjusting}
         </p>
       </div>

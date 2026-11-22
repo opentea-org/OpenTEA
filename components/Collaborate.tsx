@@ -1,4 +1,5 @@
 "use client";
+import { NewTabHint } from "@/src/lib/newTab";
 
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -42,7 +43,7 @@ export default function Collaborate({ lang = "es" }: { lang?: "en" | "es" }) {
           <h2 className="text-3xl font-bold text-brandGrayDark mb-4">
             {content.title}
           </h2>
-          <p className="text-base text-brandGrayDark/80 leading-relaxed">
+          <p className="text-lg text-gray-700 leading-relaxed">
             {content.description}
           </p>
         </div>
@@ -58,14 +59,15 @@ export default function Collaborate({ lang = "es" }: { lang?: "en" | "es" }) {
             className="flex flex-col items-center text-center gap-3 p-8 bg-white rounded-3xl border border-gray-200 hover:border-gray-800 hover:shadow-md transition-all group"
           >
             <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-gray-100 transition-colors mb-2">
-              <FaGithub className="text-4xl text-gray-400 group-hover:text-gray-800 transition-colors" />
+              <FaGithub className="text-4xl text-gray-600 group-hover:text-gray-800 transition-colors" />
             </div>
             <span className="font-bold text-brandGrayDark text-lg">
               {content.code}
             </span>
-            <p className="text-sm text-brandGrayDark/70 leading-relaxed">
+            <p className="text-base text-gray-700 leading-relaxed">
               {content.codeDesc}
             </p>
+            <NewTabHint lang={lang} />
           </Link>
 
           {/* Botón Sugerencias (Correo) */}
@@ -76,13 +78,13 @@ export default function Collaborate({ lang = "es" }: { lang?: "en" | "es" }) {
             <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-brandBlue/5 transition-colors mb-2">
               <FontAwesomeIcon 
                 icon={faEnvelope} 
-                className="text-4xl text-gray-400 group-hover:text-brandBlue transition-colors" 
+                className="text-4xl text-gray-600 group-hover:text-brandBlue transition-colors" 
               />
             </div>
             <span className="font-bold text-brandGrayDark text-lg">
               {content.suggest}
             </span>
-            <p className="text-sm text-brandGrayDark/70 leading-relaxed">
+            <p className="text-base text-gray-700 leading-relaxed">
               {content.suggestDesc}
             </p>
           </Link>
@@ -97,15 +99,16 @@ export default function Collaborate({ lang = "es" }: { lang?: "en" | "es" }) {
             <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-rose-50 transition-colors mb-2">
               <FontAwesomeIcon 
                 icon={faHandHoldingHeart} 
-                className="text-4xl text-gray-400 group-hover:text-rose-400 transition-colors" 
+                className="text-4xl text-gray-600 group-hover:text-rose-400 transition-colors" 
               />
             </div>
             <span className="font-bold text-brandGrayDark text-lg">
               {content.donate}
             </span>
-            <p className="text-sm text-brandGrayDark/70 leading-relaxed">
+            <p className="text-base text-gray-700 leading-relaxed">
               {content.donateDesc}
             </p>
+            <NewTabHint lang={lang} />
           </Link>
 
         </div>

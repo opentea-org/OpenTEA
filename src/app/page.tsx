@@ -17,12 +17,12 @@ type Lang = "en" | "es";
 
 const sectionText = {
   en: {
-    title: "Explore featured apps",
-    subtitle: "Take a look at some of the best tools organized by their primary function."
+    title: "Featured apps",
+    subtitle: "Some apps from our directory, grouped by what they do."
   },
   es: {
-    title: "Explora apps destacadas",
-    subtitle: "Echa un vistazo a algunas de las mejores herramientas organizadas por su función principal."
+    title: "Apps destacadas",
+    subtitle: "Algunas apps de nuestro directorio, agrupadas según lo que hacen."
   }
 };
 
@@ -48,7 +48,7 @@ export default async function HomePage() {
           <h2 className="text-3xl font-bold text-brandGrayDark mb-4">
             {content.title}
           </h2>
-          <p className="text-base text-gray-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
             {content.subtitle}
           </p>
         </div>

@@ -36,7 +36,7 @@ export default function NotFoundPage() {
         {content.title}
       </h1>
 
-      <p className="text-lg md:text-xl text-brandGrayDark/80 max-w-md mb-10">
+      <p className="text-lg md:text-xl text-gray-700 max-w-md mb-10">
         {content.description}
       </p>
 

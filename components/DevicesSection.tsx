@@ -40,7 +40,7 @@ export default function DevicesSection({ lang = "es" }: { lang?: SupportedLang }
       <h3 className="text-2xl font-bold text-brandGrayDark mb-3">
         {content.title}
       </h3>
-      <p className="text-gray-500 mb-8 leading-relaxed max-w-md">
+      <p className="text-base text-gray-700 mb-8 leading-relaxed max-w-md">
         {content.desc}
       </p>
       
@@ -51,12 +51,12 @@ export default function DevicesSection({ lang = "es" }: { lang?: SupportedLang }
           href="/apps?platforms=ios" 
           className="flex items-center gap-4 w-full max-w-sm bg-white p-3.5 rounded-2xl border border-gray-200 hover:border-brandGreen hover:shadow-md transition-all group text-left"
         >
-          <div className="h-10 w-10 shrink-0 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-brandGreen/10 group-hover:text-brandGreen transition-colors">
+          <div className="h-10 w-10 shrink-0 rounded-xl bg-gray-50 flex items-center justify-center text-gray-600 group-hover:bg-brandGreen/10 group-hover:text-brandGreen transition-colors">
             <FaApple className="text-xl" />
           </div>
           <div className="flex flex-col">
             <span className="font-semibold text-brandGrayDark text-sm group-hover:text-brandGreen transition-colors">iOS</span>
-            <span className="text-xs text-gray-500">{content.appleDevice}</span>
+            <span className="text-sm text-gray-700">{content.appleDevice}</span>
           </div>
         </Link>
 
@@ -65,12 +65,12 @@ export default function DevicesSection({ lang = "es" }: { lang?: SupportedLang }
           href="/apps?platforms=android" 
           className="flex items-center gap-4 w-full max-w-sm bg-white p-3.5 rounded-2xl border border-gray-200 hover:border-brandGreen hover:shadow-md transition-all group text-left"
         >
-          <div className="h-10 w-10 shrink-0 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-brandGreen/10 group-hover:text-brandGreen transition-colors">
+          <div className="h-10 w-10 shrink-0 rounded-xl bg-gray-50 flex items-center justify-center text-gray-600 group-hover:bg-brandGreen/10 group-hover:text-brandGreen transition-colors">
             <FaAndroid className="text-xl" />
           </div>
           <div className="flex flex-col">
             <span className="font-semibold text-brandGrayDark text-sm group-hover:text-brandGreen transition-colors">Android</span>
-            <span className="text-xs text-gray-500">{content.androidDevice}</span>
+            <span className="text-sm text-gray-700">{content.androidDevice}</span>
           </div>
         </Link>
 
@@ -79,12 +79,12 @@ export default function DevicesSection({ lang = "es" }: { lang?: SupportedLang }
           href="/apps?platforms=web" 
           className="flex items-center gap-4 w-full max-w-sm bg-white p-3.5 rounded-2xl border border-gray-200 hover:border-brandGreen hover:shadow-md transition-all group text-left"
         >
-          <div className="h-10 w-10 shrink-0 rounded-xl bg-gray-50 flex items-center justify-center text-gray-500 group-hover:bg-brandGreen/10 group-hover:text-brandGreen transition-colors">
+          <div className="h-10 w-10 shrink-0 rounded-xl bg-gray-50 flex items-center justify-center text-gray-600 group-hover:bg-brandGreen/10 group-hover:text-brandGreen transition-colors">
             <FaGlobe className="text-xl" />
           </div>
           <div className="flex flex-col">
             <span className="font-semibold text-brandGrayDark text-sm group-hover:text-brandGreen transition-colors">{content.webLabel}</span>
-            <span className="text-xs text-gray-500">{content.webDevice}</span>
+            <span className="text-sm text-gray-700">{content.webDevice}</span>
           </div>
         </Link>
 

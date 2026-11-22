@@ -1,20 +1,25 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { Menu, X } from "lucide-react";
 import LanguageToggle from "./LanguageToggle";
+import { BrandName } from "./BrandName";
 
 const labels = {
-  en: { apps: "Apps", resources: "Resources", about: "About" },
-  es: { apps: "Apps", resources: "Recursos", about: "Acerca" }
+  en: { apps: "Apps", resources: "Resources", about: "About us" },
+  es: { apps: "Apps", resources: "Recursos", about: "Quiénes somos" }
 };
 
 export default function Navbar({ lang: initialLang = "es" }: { lang?: string }) {
   // Initialize state with the prop from the server
   const [currentLang, setCurrentLang] = useState(initialLang);
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+  // A section counts as current on its own page and on its sub-pages (e.g. /apps/123)
+  const isCurrent = (href: string) => pathname === href || pathname.startsWith(href + "/");
 
   // Listen for cookie changes
   useEffect(() => {
@@ -43,17 +48,18 @@ export default function Navbar({ lang: initialLang = "es" }: { lang?: string }) 
 
         {/* --- LOGO --- */}
         <Link href="/" className="flex items-center gap-2" onClick={close}>
-          <img src="/logo.png" alt="OpenTEA logo" className="w-14 h-14" />
-          <span className="text-xl font-bold text-brandGrayDark hover:text-brandBlue transition">OpenTEA</span>
+          <img src="/logo.png" alt="" className="w-14 h-14" />
+          <span className="text-xl font-bold text-brandGrayDark"><BrandName /></span>
         </Link>
 
         {/* --- DESKTOP MENU --- */}
-        <div className="hidden lg:flex gap-6 items-center text-brandGrayDark">
+        <div className="hidden lg:flex gap-6 items-center text-lg text-brandGrayDark">
           {navLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="hover:text-brandBlue transition"
+              aria-current={pathname === item.href ? "page" : isCurrent(item.href) ? "true" : undefined}
+              className={`py-1 border-b-4 transition ${isCurrent(item.href) ? "border-brandBlue font-bold text-brandBlue" : "border-transparent hover:text-brandBlue"}`}
             >
               {item.label}
             </Link>
@@ -66,7 +72,8 @@ export default function Navbar({ lang: initialLang = "es" }: { lang?: string }) 
         <button
           className="lg:hidden p-2 text-brandGrayDark hover:text-brandBlue transition"
           onClick={toggle}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-label={isOpen ? (currentLang === "en" ? "Close menu" : "Cerrar menú") : (currentLang === "en" ? "Open menu" : "Abrir menú")}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -78,12 +85,13 @@ export default function Navbar({ lang: initialLang = "es" }: { lang?: string }) 
           }`}
       >
         {isOpen && (
-          <div className="flex flex-col gap-4 px-6 py-4 text-brandGrayDark">
+          <div className="flex flex-col gap-2 px-6 py-4 text-lg text-brandGrayDark">
             {navLinks.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="py-1 hover:text-brandBlue"
+                aria-current={pathname === item.href ? "page" : isCurrent(item.href) ? "true" : undefined}
+                className={`py-2 pl-3 border-l-4 ${isCurrent(item.href) ? "border-brandBlue font-bold text-brandBlue" : "border-transparent hover:text-brandBlue"}`}
                 onClick={close}
               >
                 {item.label}

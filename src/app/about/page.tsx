@@ -1,202 +1,174 @@
 // app/about/page.tsx
 
-import Link from "next/link";
 import { cookies } from "next/headers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-  faChevronLeft,
-  faHeart, 
-  faLightbulb, 
-  faEnvelope, 
-  faCode, 
-  faUniversalAccess 
+import {
+  faHeart,
+  faLightbulb,
+  faEnvelope,
+  faCode,
+  faUniversalAccess,
 } from "@fortawesome/free-solid-svg-icons";
 import { CONTACT_LINK } from "@/data/contact-info";
 import { highlightEmphasis } from "@/src/utils/formatEmphasis";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 // --- Translations ---
+// Written following Lectura Fácil: short sentences, one idea per sentence,
+// literal language. Syntax: **bold**, __blue__, *green*
 const translations = {
   en: {
-    back: "Back to home",
-    title: "About OpenTEA",
-    subtitle: "A project born from the need to help families find the right technology without the frustration",
-    
+    title: "About us",
+    subtitle: "OpenTEA helps families find useful apps for autism.",
+
     // 1. Inspiration
-    inspirationTitle: "Why I started this",
-    inspirationText: "I have an autistic family member, and I've seen firsthand how hard it is to find the right tools. We often spent hours trying out apps, only to find they weren't right for our needs. Finding technology shouldn't be this hard or expensive for families.",
+    inspirationTitle: "Why I started OpenTEA",
+    inspirationText:
+      "I have an autistic family member. I know how hard it is to find apps that help. We spent many hours trying apps that did not work for us. Finding useful apps should not be so hard or so expensive.",
 
     // 2. What is OpenTEA
     meaningTitle: "What does OpenTEA mean?",
-    // Syntax: __Bold__, __Blue__, *Green*
-    meaningText: "The name OpenTEA reflects our mission. __TEA__ is the Spanish acronym for __Autism Spectrum Disorder__. The word __Open__ represents our promise of __Open Accessibility__: making sure technology is understandable, transparent, and easy to find for everyone.",
+    meaningText:
+      "__TEA__ is the Spanish short name for __Autism Spectrum Disorder__. __Open__ means that the information is open to everyone. We want information about apps to be easy to find and easy to understand.",
 
     // 3. Mission
     missionTitle: "How we help you",
-    missionText: "Our goal is to **save you time and worry** by:",
+    missionText: "We want to **save you time and worry**. To do this:",
     missionList: [
-      "Gathering all helpful apps in one easy-to-use directory",
-      "Evaluating apps based on how they affect senses and learning",
-      "Sharing free resources so you don't have to guess what works"
+      "We collect useful apps in one place.",
+      "We rate how each app affects the senses and learning.",
+      "We share free resources to learn about autism.",
     ],
 
     // 4. Open Source
-    openSourceTitle: "A Community Project",
-    openSourceText: "This is an **Open Source** project. This means the code is public so that other developers and families can help us improve the site and keep it free and updated.",
+    openSourceTitle: "A community project",
+    openSourceText:
+      "The code of this website is **open** (in English, *open source*). Anyone can see it and help improve it. This keeps the website free and up to date.",
 
-    contactTitle: "Have a question or a suggestion?",
-    contactButton: "Send a message"
+    contactTitle: "Do you have a question or an idea?",
+    contactButton: "Send us an email",
   },
   es: {
-    back: "Volver al inicio",
-    title: "Sobre OpenTEA",
-    subtitle: "Un proyecto que nace de la necesidad de ayudar a las familias a encontrar tecnología sin frustraciones",
-    
+    title: "Quiénes somos",
+    subtitle: "OpenTEA ayuda a las familias a encontrar apps útiles para el autismo.",
+
     // 1. Inspiration
-    inspirationTitle: "Por qué empezó todo",
-    inspirationText: "Tengo un familiar con autismo y he vivido de primera mano lo difícil que es encontrar las herramientas adecuadas. Pasamos horas probando apps que no encajaban con nuestras necesidades. Encontrar tecnología no debería ser tan difícil ni costoso para las familias.",
+    inspirationTitle: "Por qué empecé OpenTEA",
+    inspirationText:
+      "Tengo un familiar con autismo. Sé lo difícil que es encontrar apps que le ayuden. Pasamos muchas horas probando apps que no nos servían. Encontrar apps útiles no debería ser tan difícil ni tan caro.",
 
     // 2. What is OpenTEA
     meaningTitle: "¿Qué significa OpenTEA?",
-    meaningText: "El nombre OpenTEA refleja nuestra misión. __TEA__ son las siglas de __Trastorno del Espectro Autista__. El término __Open__ representa nuestra promesa de __accesibilidad abierta__: asegurar que la tecnología sea comprensible, transparente y fácil de encontrar para todos.",
+    meaningText:
+      "__TEA__ son las siglas de __Trastorno del Espectro Autista__. __Open__ significa abierto en inglés. Queremos que la información sobre apps esté abierta a todo el mundo. Queremos que sea fácil de encontrar y de entender.",
 
     // 3. Mission
     missionTitle: "Cómo te ayudamos",
-    missionText: "Nuestro objetivo es **ahorrarte tiempo y preocupaciones** mediante:",
+    missionText: "Queremos **ahorrarte tiempo y preocupaciones**. Para eso:",
     missionList: [
-      "Un directorio sencillo con todas las apps útiles en un solo lugar",
-      "Evaluaciones basadas en cómo las apps afectan a los sentidos y al aprendizaje",
-      "Recursos gratuitos para que no tengas que adivinar qué funciona"
+      "Reunimos apps útiles en un solo lugar.",
+      "Valoramos cómo afecta cada app a los sentidos y al aprendizaje.",
+      "Compartimos recursos gratis para aprender sobre el autismo.",
     ],
 
     // 4. Open Source
     openSourceTitle: "Un proyecto de la comunidad",
-    openSourceText: "Este es un proyecto de **Código Abierto (Open Source)**. Esto significa que el código es público para que otros desarrolladores y familias nos ayuden a mejorar y mantener el sitio gratuito.",
+    openSourceText:
+      "El código de esta web es **abierto** (en inglés, *open source*). Cualquier persona puede verlo y ayudar a mejorarlo. Así la web sigue siendo gratis y está al día.",
 
-    contactTitle: "¿Tienes alguna pregunta o sugerencia?",
-    contactButton: "Enviar un mensaje"
-  }
+    contactTitle: "¿Tienes una pregunta o una idea?",
+    contactButton: "Envíanos un correo",
+  },
 };
+
+const sectionTitle = "text-2xl font-bold text-brandGrayDark";
+const bodyText = "text-gray-700 leading-relaxed text-lg";
 
 export default async function AboutPage() {
   const cookieStore = await cookies();
-  const lang = (cookieStore.get("lang")?.value || "es") as "en" | "es";
+  const lang = (cookieStore.get("lang")?.value === "en" ? "en" : "es") as "en" | "es";
   const content = translations[lang];
 
   return (
-    <main className="bg-gradient-to-r from-[#F7FAFF] via-[#FDFCFB] to-[#F3FBF6]">
+    <main className="min-h-screen bg-gradient-to-r from-[#F7FAFF] via-[#FDFCFB] to-[#F3FBF6]">
       <div className="max-w-3xl mx-auto px-6 py-8 md:py-12">
-        
-        {/* Back Link */}
-        <Link
-          href="/"
-          className="group inline-flex items-center text-sm font-medium text-brandGrayDark hover:text-brandBlue mb-8 transition-colors"
-        >
-          <div className="mr-2 p-1 rounded-full group-hover:bg-brandBlue/10 transition-colors">
-            <FontAwesomeIcon icon={faChevronLeft} className="w-3 h-3" />
-          </div>
-          {content.back}
-        </Link>
+        <Breadcrumbs items={[{ label: content.title }]} lang={lang} />
 
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-brandGrayDark mb-4">
-            {content.title}
-          </h1>
-          <p className="text-lg text-gray-600 max-w-xl mx-auto leading-relaxed">
-            {content.subtitle}
-          </p>
+          <h1 className="text-3xl md:text-4xl font-bold text-brandGrayDark mb-4">{content.title}</h1>
+          <p className="text-lg text-gray-700 max-w-xl mx-auto leading-relaxed">{content.subtitle}</p>
         </div>
 
         {/* Main Content Card */}
-        <div className="bg-white rounded-3xl border border-brandGray p-8 md:p-12 shadow-sm space-y-10">
-          
+        <div className="bg-white rounded-3xl border-2 border-brandGray p-8 md:p-12 space-y-10">
           {/* Section 1: The Inspiration */}
           <section className="space-y-4">
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2.5 bg-red-50 text-red-500 rounded-xl">
-                <FontAwesomeIcon icon={faHeart} className="text-xl" />
+              <div className="p-2.5 bg-red-50 text-red-600 rounded-xl">
+                <FontAwesomeIcon icon={faHeart} className="text-xl" aria-hidden="true" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">{content.inspirationTitle}</h2>
+              <h2 className={sectionTitle}>{content.inspirationTitle}</h2>
             </div>
-            <p 
-              className="text-gray-600 leading-relaxed text-lg"
-              dangerouslySetInnerHTML={{ __html: highlightEmphasis(content.inspirationText, true) }}
-            />
+            <p className={bodyText} dangerouslySetInnerHTML={{ __html: highlightEmphasis(content.inspirationText, true) }} />
           </section>
 
-          <hr className="border-brandGrayLight" />
+          <hr className="border-brandGray" />
 
-          {/* Section 2: Name Meaning & Accessibility */}
+          {/* Section 2: Name Meaning */}
           <section className="space-y-4">
             <div className="flex items-center gap-3 mb-2">
               <div className="p-2.5 bg-brandBlue/10 text-brandBlue rounded-xl">
-                <FontAwesomeIcon icon={faUniversalAccess} className="text-xl" />
+                <FontAwesomeIcon icon={faUniversalAccess} className="text-xl" aria-hidden="true" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">{content.meaningTitle}</h2>
+              <h2 className={sectionTitle}>{content.meaningTitle}</h2>
             </div>
-            <p 
-              className="text-gray-600 leading-relaxed text-lg"
-              dangerouslySetInnerHTML={{ __html: highlightEmphasis(content.meaningText, true) }}
-            />
+            <p className={bodyText} dangerouslySetInnerHTML={{ __html: highlightEmphasis(content.meaningText, true) }} />
           </section>
 
-          <hr className="border-brandGrayLight" />
+          <hr className="border-brandGray" />
 
           {/* Section 3: The Mission */}
           <section className="space-y-4">
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2.5 bg-amber-50 text-amber-500 rounded-xl">
-                <FontAwesomeIcon icon={faLightbulb} className="text-xl" />
+              <div className="p-2.5 bg-amber-50 text-amber-600 rounded-xl">
+                <FontAwesomeIcon icon={faLightbulb} className="text-xl" aria-hidden="true" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">{content.missionTitle}</h2>
+              <h2 className={sectionTitle}>{content.missionTitle}</h2>
             </div>
-            <p 
-              className="text-gray-600 leading-relaxed text-lg"
-              dangerouslySetInnerHTML={{ __html: highlightEmphasis(content.missionText, true) }}
-            />
+            <p className={bodyText} dangerouslySetInnerHTML={{ __html: highlightEmphasis(content.missionText, true) }} />
             <ul className="space-y-4 mt-4">
               {content.missionList.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3 text-gray-700">
-                  <span className="mt-2 w-2 h-2 bg-amber-500 rounded-full shrink-0" />
-                  <span 
-                    className="text-lg"
-                    dangerouslySetInnerHTML={{ __html: highlightEmphasis(item, false) }}
-                  />
+                  <span className="mt-2.5 w-2 h-2 bg-amber-600 rounded-full shrink-0" aria-hidden="true" />
+                  <span className="text-lg">{item}</span>
                 </li>
               ))}
             </ul>
           </section>
 
-          <hr className="border-brandGrayLight" />
+          <hr className="border-brandGray" />
 
           {/* Section 4: Open Source */}
           <section className="space-y-4">
             <div className="flex items-center gap-3 mb-2">
-              <div className="p-2.5 bg-brandGreen/10 text-brandGreen rounded-xl">
-                <FontAwesomeIcon icon={faCode} className="text-xl" />
+              <div className="p-2.5 bg-brandGreen/10 text-green-700 rounded-xl">
+                <FontAwesomeIcon icon={faCode} className="text-xl" aria-hidden="true" />
               </div>
-              <h2 className="text-2xl font-bold text-gray-900">{content.openSourceTitle}</h2>
+              <h2 className={sectionTitle}>{content.openSourceTitle}</h2>
             </div>
-            <p 
-              className="text-gray-600 leading-relaxed text-lg"
-              dangerouslySetInnerHTML={{ __html: highlightEmphasis(content.openSourceText, true) }}
-            />
+            <p className={bodyText} dangerouslySetInnerHTML={{ __html: highlightEmphasis(content.openSourceText, true) }} />
           </section>
-
-          <hr className="border-brandGrayLight" />
-
         </div>
 
         {/* Contact CTA */}
         <div className="mt-12 text-center space-y-6">
-          <h3 className="text-xl font-semibold text-brandGrayDark">
-            {content.contactTitle}
-          </h3>
+          <h2 className="text-xl font-bold text-brandGrayDark">{content.contactTitle}</h2>
           <a
             href={`mailto:${CONTACT_LINK.EMAIL}`}
-            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-brandBlue text-white font-bold transition-all hover:bg-brandBlue/90 hover:shadow-lg"
+            className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-brandBlue text-white text-base font-bold transition-colors hover:bg-brandBlue/90"
           >
-            <FontAwesomeIcon icon={faEnvelope} />
+            <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" />
             {content.contactButton}
           </a>
         </div>

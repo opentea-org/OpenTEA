@@ -1,5 +1,6 @@
 // components/CategoriesSection.tsx
 "use client";
+import { NewTabHint } from "@/src/lib/newTab";
 
 import React from "react";
 import Link from "next/link";
@@ -46,7 +47,7 @@ export default function CategoriesSection({ lang = "es" }: { lang?: SupportedLan
                     <h2 className="text-3xl font-bold text-brandGrayDark mb-4">
                         {content.title}
                     </h2>
-                    <p className="text-base text-brandGrayDark/80 leading-relaxed">
+                    <p className="text-lg text-gray-700 leading-relaxed">
                         {content.desc}
                     </p>
                 </div>
@@ -64,14 +65,14 @@ export default function CategoriesSection({ lang = "es" }: { lang?: SupportedLan
                                     <div className="p-4 bg-gray-50 rounded-2xl group-hover:bg-brandBlue/5 transition-colors mb-2">
                                         <FontAwesomeIcon
                                             icon={icon}
-                                            className="text-4xl text-gray-400 group-hover:text-brandBlue transition-colors"
+                                            className="text-4xl text-gray-600 group-hover:text-brandBlue transition-colors"
                                         />
                                     </div>
                                 )}
                                 <span className="font-bold text-brandGrayDark text-lg">
                                     {getCategoryName(catId, lang)}
                                 </span>
-                                <p className="text-sm text-brandGrayDark/70 leading-relaxed">
+                                <p className="text-base text-gray-700 leading-relaxed">
                                     {getCategoryDescription(catId, lang)}
                                 </p>
                             </Link>
@@ -79,17 +80,17 @@ export default function CategoriesSection({ lang = "es" }: { lang?: SupportedLan
                     })}
                 </div>
 
-                <div className="mt-14 text-center max-w-2xl mx-auto text-sm text-gray-500 leading-relaxed">
+                <div className="mt-14 text-center max-w-2xl mx-auto text-base text-gray-700 leading-relaxed">
                     {content.inspiration}{" "}
                     <a
                         href="https://www.callscotland.org.uk/downloads/posters-and-leaflets/ipad-apps-for-complex-communication-support-needs/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 font-medium text-gray-500 hover:text-brandBlue transition-colors underline underline-offset-2"
+                        className="inline-flex items-center gap-1 font-medium text-brandGrayDark hover:text-brandBlue transition-colors underline underline-offset-2"
                     >
                         {content.callScotland}
                         <FontAwesomeIcon icon={faExternalLinkAlt} className="w-3 h-3" />
-                    </a>.
+                    <NewTabHint lang={lang} /></a>.
                 </div>
 
             </div>
